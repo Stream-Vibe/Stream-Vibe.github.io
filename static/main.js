@@ -32,27 +32,15 @@
     setTimeout(tick, del ? 28 : 55);
   })();
 
-  // ---------- hero canvas: frames streaming past ----------
-  const cv = $('#streamCanvas'), cx = cv.getContext('2d');
-  let W, H, parts = [];
-  const resize = () => { W = cv.width = cv.offsetWidth * devicePixelRatio; H = cv.height = cv.offsetHeight * devicePixelRatio; };
-  resize(); addEventListener('resize', resize);
-  for (let i = 0; i < 70; i++) parts.push({ x: Math.random(), y: Math.random(), v: 0.0006 + Math.random() * 0.0016, r: 0.6 + Math.random() * 1.8, h: Math.random() < 0.5 ? 210 : (Math.random() < 0.5 ? 15 : 265) });
-  let heroVisible = true;
-  new IntersectionObserver(([e]) => heroVisible = e.isIntersecting).observe($('.hero'));
-  (function draw() {
-    if (heroVisible && !reduce) {
-      cx.clearRect(0, 0, W, H);
-      parts.forEach(p => {
-        p.x += p.v; if (p.x > 1.05) { p.x = -0.05; p.y = Math.random(); }
-        const x = p.x * W, y = p.y * H, len = 40 * p.r * devicePixelRatio;
-        const g = cx.createLinearGradient(x - len, y, x, y);
-        g.addColorStop(0, `hsla(${p.h},90%,70%,0)`); g.addColorStop(1, `hsla(${p.h},90%,72%,.75)`);
-        cx.strokeStyle = g; cx.lineWidth = p.r * devicePixelRatio; cx.beginPath(); cx.moveTo(x - len, y); cx.lineTo(x, y); cx.stroke();
-      });
-    }
-    requestAnimationFrame(draw);
-  })();
+  // ---------- hero: pointer parallax on the tilted video wall ----------
+  const plane = $('.wall-plane'), hero = $('.hero');
+  hero.addEventListener('mousemove', e => {
+    const x = e.clientX / innerWidth - 0.5, y = e.clientY / innerHeight - 0.5;
+    plane.style.setProperty('--px', `${-x * 60}px`); plane.style.setProperty('--py', `${-y * 40}px`);
+  });
+  hero.addEventListener('mouseleave', () => { plane.style.setProperty('--px', '0px'); plane.style.setProperty('--py', '0px'); });
+  // pause the wall videos once the hero is off screen
+  new IntersectionObserver(([e]) => $$('.wall-plane video').forEach(v => e.isIntersecting ? v.play().catch(() => {}) : v.pause())).observe(hero);
 
   // ---------- reveal + counters + animated svgs ----------
   const countUp = el => {

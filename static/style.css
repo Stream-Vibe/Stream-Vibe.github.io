@@ -43,17 +43,27 @@ h3.sub { font-family: var(--serif); font-size: 1.4rem; margin: 48px 0 14px; }
 
 /* ---------------- hero ---------------- */
 .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; color: #fff; text-align: center; background: var(--dark); }
-.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(3px) saturate(1.15); transform: scale(1.06); opacity: .55; }
-.hero-shade { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 45%, rgba(11,16,32,.55) 0%, rgba(11,16,32,.88) 65%, var(--dark) 100%); }
-.aurora { position: absolute; inset: -20%; pointer-events: none; filter: blur(70px); opacity: .55; mix-blend-mode: screen; }
+/* dynamic background: the video wall on a tilted plane that drifts and follows the pointer */
+.wall-stage { position: absolute; inset: 0; perspective: 1400px; overflow: hidden; }
+.wall-plane { position: absolute; left: 50%; top: 50%; width: max(160vw, 340vh);
+  transform: translate(-50%, -50%) rotateX(24deg) rotateZ(-9deg) translate3d(var(--px, 0px), var(--py, 0px), 0);
+  transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.wall-track { display: grid; grid-template-columns: 1fr 1fr; animation: drift 40s ease-in-out infinite alternate; }
+.wall-track video { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; filter: saturate(1.15) brightness(.95); }
+@keyframes drift { from { transform: translate(-7%, 4%) scale(1.02); } to { transform: translate(7%, -4%) scale(1.08); } }
+.hero-shade { position: absolute; inset: 0; background:
+  radial-gradient(ellipse 62% 58% at 50% 48%, rgba(11,16,32,.84) 0%, rgba(11,16,32,.68) 45%, rgba(11,16,32,.2) 75%, rgba(11,16,32,.55) 100%),
+  linear-gradient(180deg, rgba(11,16,32,.55) 0%, rgba(11,16,32,0) 30%, rgba(11,16,32,0) 70%, var(--dark) 100%); }
+.aurora { position: absolute; inset: -20%; pointer-events: none; filter: blur(90px); opacity: .45; mix-blend-mode: soft-light; }
 .aurora i { position: absolute; width: 46vw; height: 46vw; border-radius: 50%; }
-.aurora i:nth-child(1) { background: #2f6fd1; left: 10%; top: 15%; animation: drift1 18s ease-in-out infinite; }
-.aurora i:nth-child(2) { background: #c0577a; right: 8%; top: 30%; animation: drift2 22s ease-in-out infinite; }
-.aurora i:nth-child(3) { background: #6a4bd1; left: 35%; bottom: 0; animation: drift3 26s ease-in-out infinite; }
+.aurora i:nth-child(1) { background: #4c8dff; left: 5%; top: 10%; animation: drift1 20s ease-in-out infinite; }
+.aurora i:nth-child(2) { background: #ff7a6b; right: 5%; top: 30%; animation: drift2 24s ease-in-out infinite; }
+.aurora i:nth-child(3) { background: #9b6bff; left: 35%; bottom: 0; animation: drift3 28s ease-in-out infinite; }
 @keyframes drift1 { 50% { transform: translate(14vw, 8vh) scale(1.15); } }
 @keyframes drift2 { 50% { transform: translate(-12vw, -10vh) scale(.9); } }
 @keyframes drift3 { 50% { transform: translate(8vw, -14vh) scale(1.1); } }
-.stream-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: .7; }
+@media (max-width: 760px) { .wall-plane { transform: translate(-50%, -50%) rotateX(12deg) rotateZ(-9deg); } }
+@media (prefers-reduced-motion: reduce) { .wall-track, .aurora i { animation: none; } }
 .hero-inner { position: relative; max-width: 1100px; padding: 100px 24px 90px; }
 .mascot { width: 124px; margin: 0 auto 10px; filter: drop-shadow(0 10px 30px rgba(90,160,255,.55)); animation: bob 4.5s ease-in-out infinite, popin 1s cubic-bezier(.2,1.4,.4,1) both; }
 @keyframes bob { 50% { transform: translateY(-10px) rotate(-2deg); } }
@@ -69,7 +79,7 @@ h3.sub { font-family: var(--serif); font-size: 1.4rem; margin: 48px 0 14px; }
 @keyframes blink { 50% { opacity: 0; } }
 .authors { font-size: 1rem; line-height: 1.85; margin: 0 0 12px; color: #e8edf7; }
 .authors sup, .affils sup { font-size: .66em; color: #a9c7ff; }
-.affils { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; font-size: .88rem; color: #c8d2e4; margin: 0 0 6px; }
+.affils { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; font-size: .88rem; color: #c8d2e4; margin: 0 0 30px; }
 .affils span { display: inline-flex; align-items: center; gap: 5px; }
 .affils img { height: 16px; width: auto; background: #fff; border-radius: 4px; padding: 1px; }
 .note { font-size: .78rem; color: #8592ab; margin: 0 0 30px; }

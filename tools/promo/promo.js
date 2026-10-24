@@ -132,7 +132,7 @@ scene(0, 6.5, (root) => {
   const sub = mk(root, 'left:0;right:0;top:580px;text-align:center;font-size:54px;font-style:italic;color:#DCE4F5;text-shadow:0 3px 24px rgba(0,0,0,.7);',
     'Proactive Video Agents for Evolving User Intent', 'abs serif');
   const line = mk(root, 'left:960px;top:675px;height:2px;width:0;background:linear-gradient(90deg,transparent,#6FA8FF,#2ED3BE,#B79BFF,transparent);', '', 'abs');
-  const affs = ['Google Cloud', 'Google DeepMind', 'UC Santa Barbara', 'UC Santa Cruz', 'Stanford', 'Oxford', 'Emory'];
+  const affs = ['Google', 'UC Santa Barbara', 'UC Santa Cruz', 'Stanford', 'Oxford', 'Emory', 'Columbia'];
   const aff = mk(root, 'left:0;right:0;top:705px;text-align:center;font-size:25px;color:#B7C2D8;letter-spacing:1px;', '', 'abs');
   const affSp = affs.map((a, i) => { const s = document.createElement('span'); s.className = 'w'; s.textContent = (i ? '   ·   ' : '') + a; aff.appendChild(s); return s; });
   return (t) => {
