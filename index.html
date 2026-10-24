@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,500;0,600;0,700;1,500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="static/style.css?v=f34a6d3a">
+<link rel="stylesheet" href="static/style.css?v=88cc3bf1">
 </head>
 <body>
 <div class="progress" id="progress"></div>
@@ -44,7 +44,7 @@
       <span class="w">Proactive</span> <span class="w">Video</span> <span class="w">Agents</span><br>
       <span class="w">for</span> <span class="w">Evolving</span> <span class="w">User</span> <span class="w">Intent</span>
     </h1>
-    <p class="typer"><span id="typer"></span><span class="caret">|</span></p>
+    <p class="tagline">A benchmark, a streaming video model and an intent-tracking harness for assistants that help without being asked.</p>
     <p class="authors">
       Chengzhi Liu<sup>1,2</sup>, Yuxiang Lai<sup>1,6</sup>, Yuzhe Yang<sup>2</sup>, Yanqing Liu<sup>3</sup>, Jiheng Hou<sup>2</sup>, Yue Cao<sup>2</sup>, Haonan Wang<sup>7</sup>, Ruixi Fan<sup>1</sup>,<br>
       Lan Wang<sup>1</sup>, Sheng Liu<sup>4</sup>, Songyou Peng<sup>1</sup>, Yale Song<sup>1</sup>, Kevin Qinghong Lin<sup>5</sup>, Xin Eric Wang<sup>2</sup>, Jui-Hsin Lai<sup>1</sup>, Youbao Tang<sup>1</sup>
@@ -73,10 +73,9 @@
 <section class="promo-sec" id="video">
   <div class="wrap">
     <div class="promo-frame rv">
-      <div class="glow"></div>
       <video id="promo" src="static/video/promo.mp4" poster="static/video/promo.jpg" muted playsinline controls preload="metadata"></video>
     </div>
-    <p class="promo-cap rv">StreamVibe in under two minutes: it watches every second, keeps track of what you want, and speaks only when it helps.</p>
+    <p class="promo-cap rv">Project video (1:51, no audio).</p>
   </div>
 </section>
 
@@ -84,55 +83,56 @@
 
 <!-- ============ STATS ============ -->
 <section class="wrap stats">
-  <div class="stat rv"><span class="num" data-to="4100">0</span><span class="lbl">evaluation samples</span></div>
-  <div class="stat rv"><span class="num" data-to="20546">0</span><span class="lbl">annotated help points</span></div>
-  <div class="stat rv"><span class="num" data-to="183.4" data-dec="1">0</span><span class="lbl">hours of video</span></div>
-  <div class="stat rv"><span class="num" data-to="85" data-suf="K">0</span><span class="lbl">training samples</span></div>
-  <div class="stat rv"><span class="num" data-to="10">0</span><span class="lbl">intent subtypes</span></div>
+  <div class="stat rv"><span class="num">4,100</span><span class="lbl">evaluation samples</span></div>
+  <div class="stat rv"><span class="num">20,546</span><span class="lbl">annotated help points</span></div>
+  <div class="stat rv"><span class="num">183.4</span><span class="lbl">hours of video</span></div>
+  <div class="stat rv"><span class="num">85K</span><span class="lbl">training samples</span></div>
+  <div class="stat rv"><span class="num">10</span><span class="lbl">intent subtypes</span></div>
 </section>
 
-<!-- ============ PROBLEM ============ -->
+<!-- ============ MOTIVATION ============ -->
 <section class="wrap" id="problem">
-  <div class="eyebrow rv">The problem</div>
-  <h2 class="rv">Today's assistants wait to be asked.</h2>
-  <p class="lead rv">Real users rarely say exactly when they need help, and their requests keep changing as the task unfolds. Proactive video agents must watch the stream, <b>infer</b> what the user needs, <b>track</b> what has already happened, and <b>update</b> as intents evolve.</p>
+  <div class="eyebrow rv">Motivation</div>
+  <h2 class="rv">Why proactive assistance is hard</h2>
+  <p class="lead rv">Most streaming video assistants respond when a request names the event to watch for, such as “notify me when a goal is scored”. In everyday tasks people usually state a goal instead, and they change their requests as the task goes on. Three problems follow.</p>
   <div class="gaps">
-    <div class="gap rv tilt"><div class="gi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div><h3>Implicit intent</h3><p>“Help me finish this whenever I get stuck.” No trigger is named — the agent must infer when help is needed.</p><span class="fix">→ infer emerging intents</span></div>
-    <div class="gap rv tilt"><div class="gi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16.2 7.8l-2.1 6.3-6.3 2.1 2.1-6.3z"/></svg></div><h3>Stale task state</h3><p>Earlier replies change the task. Without tracking progress, agents repeat, contradict or miss advice.</p><span class="fix">→ track the current state</span></div>
-    <div class="gap rv tilt"><div class="gi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16M3 12a9 9 0 0 1 15.5-6.3L21 8M21 3v5h-5M3 21v-5h5"/></svg></div><h3>Evolving intent</h3><p>Users revise, add or interrupt requests mid-task. Agents keep answering the old request.</p><span class="fix">→ update active intents</span></div>
+    <div class="gap rv"><span class="gn">1</span><h3>The intent is often implicit</h3><p>“Help me finish this whenever I get stuck” names no trigger. The assistant has to decide from the video when help is needed and what kind.</p></div>
+    <div class="gap rv"><span class="gn">2</span><h3>The task state keeps changing</h3><p>Earlier replies and user actions change what is still useful. Without tracking progress, assistants repeat advice, give outdated advice, or miss steps.</p></div>
+    <div class="gap rv"><span class="gn">3</span><h3>Requests are revised mid-task</h3><p>Users add constraints, replace a request, or ask a side question. Assistants tend to keep following the first request.</p></div>
   </div>
   <figure class="figure rv">
     <img src="static/img/teaser.webp" alt="Overview of StreamVibe">
-    <figcaption><b>Overview.</b> (a) Sustained proactive interaction under explicit, implicit and dynamically evolving intents. (b) Gaps of existing paradigms and how StreamVibe addresses them.</figcaption>
+    <figcaption><b>Figure 1.</b> (a) Proactive interaction under explicit, implicit and evolving intents. (b) Limitations of existing approaches and how StreamVibe addresses them.</figcaption>
   </figure>
 </section>
 
 <!-- ============ LEVELS ============ -->
 <section class="wrap" id="levels">
-  <div class="eyebrow rv">Three levels of intent</div>
-  <h2 class="rv">From “tell me when” to “help me as I go”.</h2>
+  <div class="eyebrow rv">Task</div>
+  <h2 class="rv">Three levels of user intent</h2>
+  <p class="lead rv">StreamVibe-Bench grades proactive interaction by how explicit the intent is and whether it changes during the task.</p>
   <div class="levels">
-    <div class="level lv-ex rv tilt" data-chat='[["u","Let me know when the water starts boiling."],["w",""],["a","The water is boiling now."]]'>
+    <div class="level lv-ex rv">
       <div class="lv-tag">Level 1 · Explicit</div>
-      <p>The user names the event to watch for.</p>
-      <div class="mini-chat"></div>
+      <p>The user names a condition or event; the assistant responds when it occurs.</p>
+      <div class="mini-chat"><div class="mc u">Let me know when the water starts boiling.</div><div class="mc w">silent</div><div class="mc a">The water is boiling now.</div></div>
       <div class="subs"><span>Single Event</span><span>Transition</span><span>Recurring</span></div>
     </div>
-    <div class="level lv-im rv tilt" data-chat='[["u","Help me make these mini jam rolls."],["w",""],["a","Trim off the crusts before spreading the jam."],["w",""],["a","Now flatten the bread with a rolling pin."]]'>
+    <div class="level lv-im rv">
       <div class="lv-tag">Level 2 · Implicit</div>
-      <p>Only a goal is given; the agent infers when and how to help.</p>
-      <div class="mini-chat"></div>
+      <p>The user gives a goal; the assistant infers when and how to help from the video and task progress.</p>
+      <div class="mini-chat"><div class="mc u">Help me make these mini jam rolls.</div><div class="mc w">silent</div><div class="mc a">Trim off the crusts before spreading the jam.</div><div class="mc a">Now flatten the bread with a rolling pin.</div></div>
       <div class="subs"><span>Guidance</span><span>Learning</span><span>Monitoring</span><span>Tool use</span></div>
     </div>
-    <div class="level lv-dy rv tilt" data-chat='[["u","Recap my progress after each stage."],["a","Stage 1 done: centre crease made."],["u","Actually, just tell me when I make a mistake."],["w",""],["a","Fold the corners in first, then the tab."]]'>
+    <div class="level lv-dy rv">
       <div class="lv-tag">Level 3 · Dynamic</div>
-      <p>Intents are revised, composed or interrupted mid-task.</p>
-      <div class="mini-chat"></div>
+      <p>The request is revised, extended or interrupted while the task is under way.</p>
+      <div class="mini-chat"><div class="mc u">Recap my progress after each stage.</div><div class="mc a">Stage 1 done: centre crease made.</div><div class="mc u">Actually, just tell me when I make a mistake.</div><div class="mc a">Fold the corners in first, then the tab.</div></div>
       <div class="subs"><span>Revision</span><span>Composition</span><span>Interruption</span></div>
     </div>
   </div>
   <div class="anim-card rv">
-    <div class="anim-head"><span>Task formulation: at every second the agent sees only the past and decides <b>whether</b> and <b>what</b> to say.</span><button class="replay" data-for="svgForm">↻ Replay</button></div>
+    <div class="anim-head"><span>At each second the agent sees only the video so far, the requests so far and its own earlier replies, and chooses to stay silent or respond.</span><button class="replay" data-for="svgForm">↻ Replay</button></div>
     <img id="svgForm" class="anim-svg" data-src="static/svg/formulation.svg" alt="Streaming task formulation">
   </div>
 </section>
@@ -141,8 +141,8 @@
 <section class="demos-sec" id="demos">
   <div class="wrap">
     <div class="eyebrow light rv">Demos</div>
-    <h2 class="rv">See it act, at the right moment.</h2>
-    <p class="lead rv">Selected StreamVibe-Bench moments in physical and digital environments. StreamVibe-VL replies pop up the moment it decides to speak; the timeline below the video shows when every model spoke over the same clip, against the annotated help points.</p>
+    <h2 class="rv">Examples</h2>
+    <p class="lead rv">Clips from StreamVibe-Bench in physical and digital settings. The chat shows StreamVibe-VL’s replies at the second it gave them. The timeline below the video marks the annotated help points and every reply from StreamVibe-VL and five baselines on the same clip.</p>
 
     <div class="filters rv">
       <div class="chips" id="envChips"></div>
@@ -176,14 +176,14 @@
 <!-- ============ BENCHMARK ============ -->
 <section class="wrap" id="bench">
   <div class="eyebrow rv">StreamVibe-Bench</div>
-  <h2 class="rv">A testbed for intent-aware proactive interaction.</h2>
-  <p class="lead rv">Task videos from <b>physical</b> (egocentric activities, cooking, crafts) and <b>digital</b> (desktop & mobile GUI) environments. Gemini-3.8-Flash proposes help points with response windows and reference replies; four reviewers independently verify every sample and only unanimously approved ones are kept.</p>
+  <h2 class="rv">Benchmark construction and evaluation</h2>
+  <p class="lead rv">Task videos come from physical settings (egocentric daily activities and task execution) and digital settings (navigation, content editing and tool use). Gemini-3.8-Flash proposes candidate help points with response windows and reference replies. Four reviewers check every sample independently, and a sample is kept only if all four approve it. Annotations are aligned to 1 FPS streams.</p>
   <figure class="figure rv">
     <img src="static/img/bench.webp" alt="Construction and statistics of StreamVibe-Bench" loading="lazy">
-    <figcaption><b>Construction and statistics.</b> (a) Data construction. (b) Sample allocation across intent levels. (c) Pointwise and trajectory evaluation. (d) Duration and evidence profile.</figcaption>
+    <figcaption><b>Figure 2.</b> (a) Data construction. (b) Samples per intent level and subtype. (c) Pointwise and trajectory evaluation. (d) Video duration and help points per sample.</figcaption>
   </figure>
   <div class="anim-card rv">
-    <div class="anim-head"><span>Two complementary protocols: local “should I speak now?” decisions vs. sustained behavior under self-generated history.</span><button class="replay" data-for="svgProto">↻ Replay</button></div>
+    <div class="anim-head"><span>Pointwise evaluation scores single decisions around help points. Trajectory evaluation runs the model over the whole video with its own reply history.</span><button class="replay" data-for="svgProto">↻ Replay</button></div>
     <img id="svgProto" class="anim-svg" data-src="static/svg/protocols.svg" alt="Pointwise and trajectory evaluation">
   </div>
   <h3 class="sub rv">Comparison with existing proactive benchmarks</h3>
@@ -212,32 +212,32 @@
 <section class="method-sec" id="method">
 <div class="wrap">
   <div class="eyebrow rv">Method</div>
-  <h2 class="rv">Grounding evidence, tracking intent.</h2>
-  <p class="lead rv">A trained streaming policy, <b>StreamVibe-VL</b>, decides when and what to say; a plug-in <b>StreamVibe-Harness</b> maintains the interaction state it conditions on — active intents, task progress and memory.</p>
+  <h2 class="rv">StreamVibe-VL and StreamVibe-Harness</h2>
+  <p class="lead rv">StreamVibe has two parts. StreamVibe-VL is a streaming video model that decides at every second whether to respond and what to say. StreamVibe-Harness runs around the model and keeps an explicit record of the active requests, the task progress and the replies already given, which it passes to the model as context.</p>
   <div class="anim-card rv">
-    <div class="anim-head"><span><b>One second inside StreamVibe.</b> The Harness updates intents and progress; the policy stays silent until the moment help is needed.</span><button class="replay" data-for="svgPipe">↻ Replay</button></div>
+    <div class="anim-head"><span>One second of inference: the Harness updates the interaction state, and the model stays silent until a help point.</span><button class="replay" data-for="svgPipe">↻ Replay</button></div>
     <img id="svgPipe" class="anim-svg" data-src="static/svg/pipeline.svg" alt="One second inside StreamVibe">
   </div>
   <figure class="figure rv">
     <img src="static/img/method.webp" alt="StreamVibe method overview" loading="lazy">
-    <figcaption>(a) StreamVibe-Harness: persistent interaction state, per-intent lifecycles and hierarchical memory. (b) Adaptive streaming SFT. (c) Localized trajectory RL with point-level and trajectory-level rewards.</figcaption>
+    <figcaption><b>Figure 3.</b> (a) StreamVibe-Harness at inference time. (b) Stage 1, adaptive streaming SFT. (c) Stage 2, localized trajectory RL.</figcaption>
   </figure>
-  <div class="three-col">
-    <div class="card c-blue rv tilt">
-      <div class="card-n">01</div><h4>StreamVibe-Harness</h4>
-      <ul>
-        <li><b>Interaction state</b> ⟨active intents, task progress, delivered responses⟩, updated only on sufficient evidence.</li>
-        <li><b>Intent lifecycle</b>: each intent is an independent stateful instance that opens, persists or closes.</li>
-        <li><b>Hierarchical memory</b>: recent history in detail, older history compressed and retrieved by relevance.</li>
-      </ul>
+  <div class="mgrid">
+    <div class="mcol rv">
+      <h4>StreamVibe-Harness</h4>
+      <p>The interaction state holds the active requests, the task progress and the replies already delivered. It changes only when the conversation or the video gives enough evidence.</p>
+      <p>Each request is tracked on its own. One-time requests close once they are satisfied; standing requests stay open. The Harness decides which requests are still valid, but not when to speak.</p>
+      <p>Recent history is kept in detail and older history is compressed. The parts relevant to the active requests are retrieved for each decision.</p>
     </div>
-    <div class="card c-coral rv tilt">
-      <div class="card-n">02</div><h4>Adaptive streaming SFT</h4>
-      <p>Silence/response decision tokens are re-weighted to the current training distribution while response tokens keep their own weight — no collapse into always-silent or over-talkative behavior. 70K intent samples + 768K general streaming-video samples.</p>
+    <div class="mcol rv">
+      <h4>Stage 1: adaptive streaming SFT</h4>
+      <p>Training sources differ a lot in how often the model should speak. The loss re-weights silence and response decisions to the current training mix and weights reply tokens separately, so the model does not drift toward always staying silent or always talking.</p>
+      <p>Data: 70K samples from StreamVibe-85K plus 768K general streaming-video samples.</p>
     </div>
-    <div class="card c-purple rv tilt">
-      <div class="card-n">03</div><h4>Localized trajectory RL</h4>
-      <p>Short causal rollouts around help points, optimized with GRPO. Reward <span class="math">R = 0.7·R<sub>align</sub> + 0.3·R<sub>glob</sub></span>: timing × content matching per help point plus trajectory-level coverage, order, consistency and redundancy.</p>
+    <div class="mcol rv">
+      <h4>Stage 2: localized trajectory RL</h4>
+      <p>Rewarding whole trajectories mixes good and bad decisions. We instead roll out short causal segments around help points and optimize them with GRPO.</p>
+      <p>The reward is <span class="math">R = 0.7·R<sub>align</sub> + 0.3·R<sub>glob</sub></span>. R<sub>align</sub> scores each matched reply on timing and content; R<sub>glob</sub> scores the segment for coverage, order, consistency and redundancy. 15K tasks.</p>
     </div>
   </div>
 </div>
@@ -245,27 +245,33 @@
 
 <!-- ============ RESULTS ============ -->
 <section class="wrap" id="results">
-  <div class="eyebrow rv">Results</div>
-  <h2 class="rv">Better timing, better content, sustained.</h2>
+  <div class="eyebrow rv">Experiments</div>
+  <h2 class="rv">Results</h2>
+  <p class="lead rv">Baselines are proprietary models (Gemini-3.1-Pro, Gemini-3.8-Flash, GPT-Realtime-2.1), open-source offline models (Qwen3-VL-8B, Qwen3.5-9B, JoyAI-VL-Interaction) and open-source streaming models (MMDuet2, Mage-VL, LiveStar, ViSpeak, VideoLLM-Online). StreamVibe-Bench numbers use trajectory evaluation with a ±2 s tolerance unless noted.</p>
 
-  <div class="headline rv">
-    <div class="hl"><span class="num" data-to="10.7" data-dec="1" data-pre="+" data-suf="%">0</span><span>timing &amp; answer quality over baselines</span></div>
-    <div class="hl"><span class="num" data-to="12.3" data-dec="1" data-pre="+" data-suf="%">0</span><span>proactive interaction from the Harness</span></div>
-    <div class="hl"><span class="num" data-to="1.49" data-dec="2" data-suf="%">0</span><span>false-positive rate on implicit intents (trajectory)</span></div>
-  </div>
-
-  <div class="chart-card rv" id="chartCard">
-    <div class="chart-head">
-      <div><b>Content F1 under trajectory evaluation</b><span class="muted"> · self-generated history, ±2 s</span></div>
-      <div class="chart-legend" id="chartLegend"></div>
+  <div class="kgrid">
+    <div class="kcard rv kc">
+      <h4>Content F1 on StreamVibe-Bench</h4>
+      <p class="ksub">StreamVibe-VL (RL) vs. the strongest open-source baseline at each level.</p>
+      <div class="kchart" id="kBench"></div>
+      <div class="klegend"><span><i class="d o"></i>StreamVibe-VL (RL)</span><span><i class="d b"></i>MMDuet2 (best baseline)</span></div>
     </div>
-    <div class="chart" id="chart"></div>
-    <div class="chart-tip" id="chartTip"></div>
+    <div class="kcard rv kc">
+      <h4>Other proactive benchmarks</h4>
+      <p class="ksub">Official protocols. EgoProactive macro score and IPIBench understanding score.</p>
+      <div class="kchart" id="kTransfer"></div>
+    </div>
+    <div class="kcard rv kc">
+      <h4>General video understanding</h4>
+      <p class="ksub">Accuracy (%) of the base model and of StreamVibe-VL after proactive training.</p>
+      <div class="kchart" id="kGeneral"></div>
+      <div class="klegend"><span><i class="d o"></i>StreamVibe-VL (RL)</span><span><i class="d b"></i>Qwen3.5-9B (base)</span></div>
+    </div>
   </div>
 
   <div class="explorer rv" id="explorer">
     <div class="ex-head">
-      <div><b>All models on StreamVibe-Bench</b><span class="muted"> · ±2 s tolerance · hover a bar for details</span></div>
+      <div><b>All models on StreamVibe-Bench</b><span class="muted"> · choose the setting and metric</span></div>
       <div class="ex-ctrls">
         <div class="seg" id="exSet"><button data-k="traj" class="on">Trajectory</button><button data-k="point">Pointwise</button></div>
         <div class="seg" id="exMet"><button data-m="2">Timing F1</button><button data-m="3">FPR ↓</button><button data-m="4">Answer score</button><button data-m="5" class="on">Content F1</button></div>
@@ -276,15 +282,18 @@
     <div class="chart-tip" id="exTip"></div>
   </div>
 
-  <div class="findings">
-    <div class="finding rv"><span class="fi">RQ1</span><div><b>Stronger proactive interaction, general understanding preserved.</b> StreamVibe-VL beats open-source baselines with the highest Content F1 under trajectory evaluation; RL adds gains over SFT, largest on dynamic intents. It transfers to EgoProactive and IPIBench and improves over its base model on every general video benchmark.</div></div>
-    <div class="finding rv"><span class="fi">RQ2</span><div><b>Current proactive agents struggle to stay reliable over time.</b> Implicit and dynamic intents are much harder than explicit ones; higher recall comes with more false triggers; timing F1 decays with interaction length.</div></div>
-    <div class="finding rv"><span class="fi">RQ3</span><div><b>Policy learning and state tracking are complementary.</b> SFT raises sensitivity, RL restores selectivity, and adding the Harness to a fixed policy further suppresses unnecessary responses — clearest on dynamic intents.</div></div>
+  <div class="findings rv">
+    <h3 class="sub">Main observations</h3>
+    <ol>
+      <li><b>StreamVibe-VL is the strongest open-source model on StreamVibe-Bench.</b> It has the highest Content F1 at every intent level under trajectory evaluation. RL improves over SFT, most on dynamic intents. The gains carry over to EgoProactive and IPIBench, and accuracy on general video benchmarks goes up rather than down.</li>
+      <li><b>Implicit and dynamic intents remain hard for every model.</b> Models that respond more often reach higher recall but also trigger more false alarms, and timing F1 drops as interactions get longer.</li>
+      <li><b>Training and state tracking help in different ways.</b> SFT makes the model respond more readily; RL makes it more selective. Adding the Harness to a fixed model removes further unnecessary replies and improves content, with the largest effect on dynamic intents.</li>
+    </ol>
   </div>
 
   <div class="tabs rv" id="figTabs">
     <div class="tab-bar">
-      <button class="on" data-i="0">Generalization</button><button data-i="1">Diagnostics</button><button data-i="2">Policy &amp; Harness</button><button data-i="3">Case studies</button>
+      <button class="on" data-i="0">Generalization</button><button data-i="1">Diagnostics</button><button data-i="2">Training and Harness</button><button data-i="3">Case studies</button>
     </div>
     <div class="tab-body">
       <figure class="figure tabfig on"><img src="static/img/transfer.webp" alt="" loading="lazy"><figcaption>(a) Macro score on EgoProactive; (b) submetric scores on IPIBench; (c) accuracy on MVBench, Video-MME, OVO-Bench and OVBench.</figcaption></figure>
@@ -322,6 +331,6 @@
 
 <div class="lightbox" id="lightbox"><img alt=""></div>
 <script src="static/gallery.js?v=a1cb3fa6"></script>
-<script src="static/main.js?v=8eff3e76"></script>
+<script src="static/main.js?v=34d134c2"></script>
 </body>
 </html>

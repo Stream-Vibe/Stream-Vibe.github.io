@@ -1,4 +1,4 @@
-// Page effects (reveal, counters, hero canvas, typer, tilt), demo theater + gallery, results chart and table.
+// Page behaviour: nav, reveal, hero parallax, demo player + gallery, key result charts, results explorer.
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -18,19 +18,6 @@
 
   // ---------- title word stagger ----------
   $$('.title .w').forEach((w, i) => w.style.animationDelay = `${0.25 + i * 0.08}s`);
-
-  // ---------- typer ----------
-  const lines = ['Watches the stream.', 'Infers the intent.', 'Keeps up as it changes.', 'Speaks only when it helps.'];
-  let li = 0, ci = 0, del = false;
-  const typer = $('#typer');
-  (function tick() {
-    const L = lines[li];
-    typer.textContent = L.slice(0, ci);
-    if (!del && ci === L.length) { del = true; return setTimeout(tick, 1500); }
-    if (del && ci === 0) { del = false; li = (li + 1) % lines.length; }
-    ci += del ? -1 : 1;
-    setTimeout(tick, del ? 28 : 55);
-  })();
 
   // ---------- hero: pointer parallax on the tilted video wall ----------
   const plane = $('.wall-plane'), hero = $('.hero');
@@ -60,35 +47,10 @@
     $$('.num[data-to]', el).forEach(countUp);
     if (el.matches('.num[data-to]')) countUp(el);
     $$('.anim-svg', el).forEach(playSvg);
-    if (el.dataset.chat) miniChat(el);
-    if (el.id === 'chartCard') drawChart(true);
+    if (el.classList.contains('kc')) $$('[data-w]', el).forEach(x => x.style.setProperty('--w', x.dataset.w));
   }), { threshold: 0.18 });
   $$('.rv').forEach(el => io.observe(el));
   $$('.replay').forEach(b => b.onclick = () => playSvg($('#' + b.dataset.for)));
-
-  // ---------- tilt ----------
-  $$('.tilt').forEach(el => {
-    el.addEventListener('mousemove', e => {
-      const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-      el.style.transform = `perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-4px)`;
-    });
-    el.addEventListener('mouseleave', () => el.style.transform = '');
-  });
-
-  // ---------- level mini chats (looping) ----------
-  function miniChat(card) {
-    const box = $('.mini-chat', card), script = JSON.parse(card.dataset.chat);
-    let i = 0;
-    const next = () => {
-      if (i === script.length) { i = 0; return setTimeout(() => { box.innerHTML = ''; next(); }, 2600); }
-      const [k, t] = script[i++];
-      $$('.mc.w', box).forEach(n => n.remove());
-      const m = document.createElement('div'); m.className = 'mc ' + k;
-      m.textContent = k === 'w' ? 'watching… silent' : t; box.appendChild(m);
-      setTimeout(next, k === 'w' ? 1300 : 1100);
-    };
-    next();
-  }
 
   // ---------- lightbox ----------
   const lb = $('#lightbox');
@@ -233,41 +195,33 @@
   filter();
 
   // =====================================================================
-  // Results chart: trajectory Content F1 by intent level (grouped bars)
+  // Key result charts: dot-pair (dumbbell) rows and small horizontal bars, drawn as HTML so they animate with CSS
   // =====================================================================
-  const CH = { cats: ['Explicit', 'Implicit', 'Dynamic'],
-    series: [['StreamVibe-VL (RL)', '#2f6fd1', [10.83, 19.13, 8.91]], ['MMDuet2', '#d9653b', [5.88, 16.51, 7.47]], ['ViSpeak', '#7a57b5', [3.30, 9.51, 3.84]]] };
-  $('#chartLegend').innerHTML = CH.series.map(([n, c]) => `<span><i style="background:${c}"></i>${n}</span>`).join('');
-  function drawChart(animate) {
-    const w = 900, h = 300, m = { l: 44, r: 10, t: 14, b: 34 }, iw = w - m.l - m.r, ih = h - m.t - m.b, max = 20;
-    const y = v => m.t + ih - ih * v / max, gw = iw / CH.cats.length, bw = 46, gap = 4;
-    let s = `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Content F1 by intent level">`;
-    for (let v = 0; v <= max; v += 5) s += `<line x1="${m.l}" x2="${w - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#e6e6e3" stroke-width="1"/><text x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end" font-size="12" fill="#52514e">${v}</text>`;
-    CH.cats.forEach((c, ci) => {
-      const gx = m.l + gw * ci + gw / 2 - (CH.series.length * (bw + gap) - gap) / 2;
-      CH.series.forEach(([n, col, vals], si) => {
-        const v = vals[ci], x = gx + si * (bw + gap), top = y(v), hh = m.t + ih - top;
-        s += `<path class="bar" data-n="${n}" data-c="${c}" data-v="${v}" d="M${x},${m.t + ih} V${top + 4} q0,-4 4,-4 h${bw - 8} q4,0 4,4 V${m.t + ih} Z" fill="${col}"
-          style="transform-origin:${x}px ${m.t + ih}px;${animate ? `transform:scaleY(0);transition:transform .9s cubic-bezier(.2,.8,.2,1) ${0.1 * ci + 0.08 * si}s` : ''}"/>`;
-        if (si === 0) s += `<text x="${x + bw / 2}" y="${top - 6}" text-anchor="middle" font-size="12" font-weight="700" fill="#0b0b0b">${v.toFixed(2)}</text>`;
-        s += `<rect x="${x - 2}" y="${m.t}" width="${bw + 4}" height="${ih}" fill="transparent" class="hit" data-n="${n}" data-c="${c}" data-v="${v}"/>`;
-      });
-      s += `<text x="${m.l + gw * ci + gw / 2}" y="${h - 10}" text-anchor="middle" font-size="13" font-weight="600" fill="#0b0b0b">${c}</text>`;
-    });
-    $('#chart').innerHTML = s + '</svg>';
-    if (animate) requestAnimationFrame(() => requestAnimationFrame(() => $$('#chart .bar').forEach(b => b.style.transform = 'scaleY(1)')));
-    const tip = $('#chartTip'), card = $('#chartCard');
-    $$('#chart .hit').forEach(r => {
-      r.addEventListener('mousemove', e => {
-        const cr = card.getBoundingClientRect();
-        tip.innerHTML = `<b>${r.dataset.n}</b><br>${r.dataset.c} intents · Content F1 <b>${(+r.dataset.v).toFixed(2)}</b>`;
-        tip.style.left = `${e.clientX - cr.left + 14}px`; tip.style.top = `${e.clientY - cr.top - 10}px`; tip.style.opacity = 1;
-        $$('#chart .bar').forEach(b => b.classList.toggle('dim', !(b.dataset.n === r.dataset.n && b.dataset.c === r.dataset.c)));
-      });
-      r.addEventListener('mouseleave', () => { tip.style.opacity = 0; $$('#chart .bar').forEach(b => b.classList.remove('dim')); });
-    });
+  const tipEl = document.createElement('div'); tipEl.className = 'chart-tip global'; document.body.appendChild(tipEl);
+  const hoverTip = (el, html) => {
+    el.addEventListener('mousemove', e => { tipEl.innerHTML = html; tipEl.style.left = `${e.clientX + 14}px`; tipEl.style.top = `${e.clientY - 10}px`; tipEl.style.opacity = 1; });
+    el.addEventListener('mouseleave', () => tipEl.style.opacity = 0);
+  };
+  function dumbbell(box, rows, lo, hi, oursName, baseName, dec = 2) {
+    const x = v => (100 * (v - lo) / (hi - lo)).toFixed(2);
+    box.innerHTML = `<div class="db">${rows.map(([lab, b, o]) => `
+      <div class="db-row"><span class="db-lab">${lab}</span><span class="db-track"><span class="db-in">
+        <i class="db-line" data-w="1" style="left:${x(b)}%;width:${x(o) - x(b)}%"></i>
+        <i class="db-dot b" style="left:${x(b)}%"></i><i class="db-dot o" style="left:${x(o)}%"></i>
+        <span class="db-v b" style="left:${x(b)}%">${b.toFixed(dec)}</span><span class="db-v o" style="left:${x(o)}%">${o.toFixed(dec)}</span>
+      </span></span><span class="db-delta">+${(o - b).toFixed(dec === 2 ? 2 : 1)}</span></div>`).join('')}</div>`;
+    $$('.db-row', box).forEach((r, i) => hoverTip(r, `<b>${rows[i][0]}</b><br>${oursName}: <b>${rows[i][2].toFixed(dec)}</b><br>${baseName}: ${rows[i][1].toFixed(dec)}`));
   }
-  drawChart(false);
+  function hbars(box, groups) {
+    box.innerHTML = groups.map(([title, items, max]) => `<div class="hb"><div class="hb-t">${title}</div>${items.map(([n, v, o]) => `
+      <div class="hb-row${o ? ' o' : ''}"><span class="hb-n">${n}</span><span class="hb-tr"><i data-w="${(100 * v / max).toFixed(1)}%"></i></span><span class="hb-v">${v.toFixed(1)}</span></div>`).join('')}</div>`).join('');
+    $$('.hb-row', box).forEach(r => hoverTip(r, `<b>${$('.hb-n', r).textContent}</b><br>${$('.hb-t', r.parentNode).textContent}: <b>${$('.hb-v', r).textContent}</b>`));
+  }
+  dumbbell($('#kBench'), [['Explicit', 5.88, 10.83], ['Implicit', 16.51, 19.13], ['Dynamic', 7.47, 8.91]], 0, 22, 'StreamVibe-VL (RL)', 'MMDuet2');
+  hbars($('#kTransfer'), [
+    ['EgoProactive · macro', [['StreamVibe-VL (RL)', 59.5, 1], ['StreamVibe-VL (SFT)', 53.0, 1], ['Qwen3.5-9B', 46.2], ['JoyAI-VL-Interaction', 41.0]], 65],
+    ['IPIBench · understanding', [['StreamVibe-VL (RL)', 20.4, 1], ['StreamVibe-VL (SFT)', 8.3, 1], ['Qwen3.5-9B', 9.8], ['JoyAI-VL-Interaction', 7.4]], 24]]);
+  dumbbell($('#kGeneral'), [['MVBench', 66.90, 69.30], ['Video-MME', 67.30, 68.70], ['Video-MME (sub.)', 70.00, 70.60], ['OVO-Bench', 57.71, 59.29]], 56, 72, 'StreamVibe-VL (RL)', 'Qwen3.5-9B', 1);
 
   // =====================================================================
   // Results table
