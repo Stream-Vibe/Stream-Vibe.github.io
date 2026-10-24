@@ -2,10 +2,14 @@
 
 Source of https://stream-vibe.github.io/ — *StreamVibe: Proactive Video Agents for Evolving User Intent*.
 
-Static site (no build step): `index.html`, `static/{style.css,main.js,demos.js}`.
-
-- `tools/render_figs.py` re-renders `static/img/*.webp` from the paper figure PDFs (Overleaf clone).
-- `tools/build_demos.py` regenerates `static/demos.js` from the talk demo metadata.
-- `tools/encode_clips.sh` trims/encodes the demo clips (run on a compute node).
-
+Static site, no build step: `index.html`, `static/{style.css,main.js,gallery.js}`, animated SVGs in `static/svg/`.
 Preview locally: `python3 -m http.server` and open http://localhost:8000.
+
+Regenerating assets (paths point at the cluster checkout; video work runs on a compute node):
+- `tools/render_figs.py` — paper figure PDFs (Overleaf clone) → `static/img/*.webp`.
+- Demo gallery: `tools/build_gallery.py` scores candidates (source ≥720p only) → `_work/gallery_hires.json`;
+  `tools/finalize_gallery.py` holds the hand-reviewed picks (English UI, clear contrast) → `static/gallery.js` + `_work/encode.tsv`;
+  `tools/encode_gallery.sh` encodes `static/video/gallery/`.
+- Promo video: `tools/promo/` is the talk's promo v2 renderer with the StreamVibe name (`full.sh` → `static/video/promo.mp4`; fonts come from `code/talk/scripts/promo2/fonts`).
+- Animated SVGs in `static/svg/` are the talk diagrams (`code/talk/svg`) with the name replaced.
+- Main-results table and the Content-F1 chart data are hard-coded in `static/main.js`; keep them in sync with the paper.

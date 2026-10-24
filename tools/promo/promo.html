@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: 'Inter'; src: url('fonts/InterVariable.ttf') format('truetype'); font-weight: 100 900; font-style: normal; }
+@font-face { font-family: 'Inter'; src: url('fonts/InterVariable-Italic.ttf') format('truetype'); font-weight: 100 900; font-style: italic; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #05070F; }
+body { font-family: 'Inter', 'Liberation Sans', sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+#stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
+.abs { position: absolute; }
+.serif { font-family: 'Times New Roman', 'Liberation Serif', serif; }
+.scene { position: absolute; inset: 0; display: none; }
+.kicker { font-size: 22px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; }
+.title { font-family: 'Times New Roman', serif; font-size: 66px; font-weight: 700; letter-spacing: .3px; }
+.card { position: absolute; border-radius: 26px; background: linear-gradient(160deg, rgba(255,255,255,.085), rgba(255,255,255,.03));
+        border: 1.5px solid rgba(255,255,255,.12); box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+.chip { display: inline-flex; align-items: center; gap: 10px; padding: 8px 20px; border-radius: 999px; font-size: 22px; font-weight: 700; letter-spacing: 1px; }
+.w { display: inline-block; white-space: pre; will-change: transform, opacity; }
+.grad { background: linear-gradient(90deg, #6FA8FF, #2ED3BE 50%, #B79BFF); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.frame { position: absolute; object-fit: cover; }
+.caret { display: inline-block; width: 3px; height: 1em; background: currentColor; vertical-align: -0.15em; margin-left: 2px; }
+</style></head>
+<body><div id="stage"></div>
+<script src="promo.js"></script>
+</body></html>
