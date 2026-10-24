@@ -3,6 +3,7 @@
 Source of https://stream-vibe.github.io/ — *StreamVibe: Proactive Video Agents for Evolving User Intent*.
 
 Static site, no build step: `index.html`, `static/{style.css,main.js,gallery.js}`, animated SVGs in `static/svg/`.
+Before pushing, run `python3 tools/stamp_assets.py` (cache-busting versions on CSS/JS).
 Preview locally: `python3 -m http.server` and open http://localhost:8000.
 
 Regenerating assets (paths point at the cluster checkout; video work runs on a compute node):
