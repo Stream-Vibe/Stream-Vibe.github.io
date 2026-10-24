@@ -1,6 +1,6 @@
 window.GALLERY = [
  {
-  "key": "w019",
+  "key": "v054",
   "env": "Physical",
   "title": "The moment the coffee button is pressed",
   "level": "Explicit",
@@ -87,7 +87,7 @@ window.GALLERY = [
   }
  },
  {
-  "key": "w020",
+  "key": "v056",
   "env": "Physical",
   "title": "When the skier starts down the slope",
   "level": "Explicit",
@@ -175,7 +175,7 @@ window.GALLERY = [
   }
  },
  {
-  "key": "w053",
+  "key": "v057",
   "env": "Physical",
   "title": "When she asks about the camera",
   "level": "Explicit",
@@ -263,7 +263,287 @@ window.GALLERY = [
   }
  },
  {
-  "key": "w006",
+  "key": "v014",
+  "env": "Physical",
+  "title": "Microwave mug shakshuka",
+  "level": "Implicit",
+  "sub": "Guidance",
+  "speed": 1.0,
+  "start": 111.0,
+  "end": 126.0,
+  "users": [
+   {
+    "t": 0.0,
+    "text": "Walk me through making this microwave mug shakshuka step by step, and let me know if I mess up the ingredients or cooking times."
+   }
+  ],
+  "gold": [
+   122.0
+  ],
+  "resp": [
+   {
+    "t": 121.0,
+    "text": "The microwave is done. Carefully remove the mug and check if the egg is set.",
+    "hit": true,
+    "base": [
+     {
+      "name": "JoyAI",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "Stir one last time to make sure everything's cooked through."
+     },
+     {
+      "name": "MMDuet2",
+      "tag": "Silent",
+      "color": "E5484D",
+      "text": ""
+     },
+     {
+      "name": "ViSpeak",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "The person is making microwave mug shakshuka."
+     },
+     {
+      "name": "LiveStar",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "Then, the scene switches to the microwave, where a hand is opening the microwave door."
+     },
+     {
+      "name": "Mage-VL",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "1. Preheat the oven to 375 degrees Fahrenheit. 2. In a large bowl, whisk together the eggs, salt, and pepper. 3. In a separate bowl, whisk together the chickpeas, cumin, paprika, and cayenne pepper. 4. Add the chickpea mixture to the egg mixture and whisk until combined. 5."
+     }
+    ]
+   }
+  ],
+  "counts": {
+   "StreamVibe": 1,
+   "JoyAI": 16,
+   "MMDuet2": 0,
+   "ViSpeak": 3,
+   "LiveStar": 3,
+   "Mage-VL": 2
+  },
+  "lanes": {
+   "StreamVibe": [
+    121.0
+   ],
+   "JoyAI": [
+    111.0,
+    112.0,
+    113.0,
+    114.0,
+    115.0,
+    116.0,
+    117.0,
+    118.0,
+    119.0,
+    120.0,
+    121.0,
+    122.0,
+    123.0,
+    124.0,
+    125.0,
+    126.0
+   ],
+   "MMDuet2": [],
+   "ViSpeak": [
+    112.0,
+    118.0,
+    123.0
+   ],
+   "LiveStar": [
+    119.0,
+    121.0,
+    124.0
+   ],
+   "Mage-VL": [
+    112.0,
+    120.0
+   ]
+  }
+ },
+ {
+  "key": "v018",
+  "env": "Physical",
+  "title": "Swapping a toy car’s rear wheel",
+  "level": "Implicit",
+  "sub": "Guidance",
+  "speed": 1.0,
+  "start": 0.0,
+  "end": 9.0,
+  "users": [
+   {
+    "t": 0.0,
+    "text": "Walk me through upgrading this toy car's rear wheel assembly, and make sure I'm using the right parts and securing everything tightly."
+   }
+  ],
+  "gold": [
+   4.0
+  ],
+  "resp": [
+   {
+    "t": 4.0,
+    "text": "Go ahead and loosen the pink nut on the rear axle to start removing the old wheel.",
+    "hit": true,
+    "base": [
+     {
+      "name": "JoyAI",
+      "tag": "Premature",
+      "color": "E5484D",
+      "text": "Okay, we're looking at a toy car chassis with pink and black components. The rear wheel assembly is already partially assembled, but we need to upgrade it. Let's start by checking the current setup."
+     },
+     {
+      "name": "MMDuet2",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "Hands start by disassembling the rear part of the car, with one hand holding the white frame and the other manipulating components near the pink-hued parts and black wheels."
+     },
+     {
+      "name": "ViSpeak",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "The person is using a screwdriver to tighten the screws on the rear wheel assembly of the toy car."
+     },
+     {
+      "name": "LiveStar",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "Then the hand pushes the toy car forward, and the front of the car moves up and down. Then the hand takes out a pink gear and puts it on the toy car."
+     },
+     {
+      "name": "Mage-VL",
+      "tag": "Silent",
+      "color": "E5484D",
+      "text": ""
+     }
+    ]
+   }
+  ],
+  "counts": {
+   "StreamVibe": 1,
+   "JoyAI": 2,
+   "MMDuet2": 3,
+   "ViSpeak": 1,
+   "LiveStar": 6,
+   "Mage-VL": 0
+  },
+  "lanes": {
+   "StreamVibe": [
+    4.0
+   ],
+   "JoyAI": [
+    0.0,
+    7.0
+   ],
+   "MMDuet2": [
+    5.0,
+    7.0,
+    9.0
+   ],
+   "ViSpeak": [
+    5.0
+   ],
+   "LiveStar": [
+    0.0,
+    1.0,
+    2.0,
+    3.0,
+    4.0,
+    7.0
+   ],
+   "Mage-VL": []
+  }
+ },
+ {
+  "key": "v023",
+  "env": "Physical",
+  "title": "Cleaning a sink with baking soda paste",
+  "level": "Implicit",
+  "sub": "Guidance",
+  "speed": 1.0,
+  "start": 0.0,
+  "end": 7.0,
+  "users": [
+   {
+    "t": 0.0,
+    "text": "Walk me through cleaning this bathroom sink with a DIY baking soda paste, and help me get the consistency and scrubbing right."
+   }
+  ],
+  "gold": [
+   2.0
+  ],
+  "resp": [
+   {
+    "t": 2.0,
+    "text": "Go ahead and add a generous amount of baking soda into the bowl, then slowly pour in water to start mixing.",
+    "hit": true,
+    "base": [
+     {
+      "name": "JoyAI",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "Okay, let's get started. First, make sure the sink is dry. We're going to clean this with a baking soda paste."
+     },
+     {
+      "name": "MMDuet2",
+      "tag": "Silent",
+      "color": "E5484D",
+      "text": ""
+     },
+     {
+      "name": "ViSpeak",
+      "tag": "Late",
+      "color": "E5484D",
+      "text": "The person is preparing to clean the bathroom sink with a DIY baking soda paste."
+     },
+     {
+      "name": "LiveStar",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "Then the man in the white T-shirt puts down the phone, and the scene switches to a woman in a white T-shirt and a white headscarf. She is standing in front of the sink, holding a basin in her left hand and a bowl in her right hand. The woman in the white T-shirt puts the basin on the sink, then puts the bowl on the basin, and then puts the bowl on the right side of the sink."
+     },
+     {
+      "name": "Mage-VL",
+      "tag": "Silent",
+      "color": "E5484D",
+      "text": ""
+     }
+    ]
+   }
+  ],
+  "counts": {
+   "StreamVibe": 1,
+   "JoyAI": 2,
+   "MMDuet2": 0,
+   "ViSpeak": 1,
+   "LiveStar": 2,
+   "Mage-VL": 0
+  },
+  "lanes": {
+   "StreamVibe": [
+    2.0
+   ],
+   "JoyAI": [
+    0.0,
+    7.0
+   ],
+   "MMDuet2": [],
+   "ViSpeak": [
+    7.0
+   ],
+   "LiveStar": [
+    0.0,
+    1.0
+   ],
+   "Mage-VL": []
+  }
+ },
+ {
+  "key": "v102",
   "env": "Physical",
   "title": "Mug scrambled eggs, with questions mid-task",
   "level": "Dynamic",
@@ -422,50 +702,58 @@ window.GALLERY = [
   }
  },
  {
-  "key": "w043",
+  "key": "v149",
   "env": "Physical",
-  "title": "Brewing espresso, interrupted",
+  "title": "Tortilla chips and salsa, interrupted",
   "level": "Dynamic",
   "sub": "Interruption",
   "speed": 1.0,
-  "start": 26.0,
-  "end": 39.0,
+  "start": 240.0,
+  "end": 253.0,
   "users": [
    {
     "t": 0.0,
-    "text": "Please guide me to the next step whenever I finish a stage in brewing espresso."
+    "text": "I'm making homemade tortilla chips and fresh salsa from scratch. Guide me step-by-step as I complete each part of the recipe."
    },
    {
-    "t": 34.0,
-    "text": "What color are the cups placed under the coffee spout?"
+    "t": 108.0,
+    "text": "Which bowl should I put the chopped salsa ingredients into?"
+   },
+   {
+    "t": 178.0,
+    "text": "Do I have any raw tortilla pieces left to cook?"
+   },
+   {
+    "t": 248.0,
+    "text": "Where was the lemon half sitting before I picked it up?"
    }
   ],
   "gold": [
-   34.0
+   248.0
   ],
   "resp": [
    {
-    "t": 34.0,
-    "text": "The cups placed under the coffee spout are yellow and red.",
+    "t": 248.0,
+    "text": "The lemon half was sitting on the counter next to the pressure cooker.",
     "hit": true,
     "base": [
      {
       "name": "JoyAI",
-      "tag": "Correct",
-      "color": "1F9D55",
-      "text": "The cups are yellow and red."
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "The lemon half was sitting on the counter before you picked it up."
      },
      {
       "name": "MMDuet2",
-      "tag": "Correct",
-      "color": "1F9D55",
-      "text": "The cups are yellow and red."
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "The lemon half was sitting on the red cutting board."
      },
      {
       "name": "ViSpeak",
-      "tag": "Correct",
-      "color": "1F9D55",
-      "text": "The cups are yellow and red."
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "The person is cooking tortilla chips in a pan."
      },
      {
       "name": "LiveStar",
@@ -477,14 +765,217 @@ window.GALLERY = [
       "name": "Mage-VL",
       "tag": "Wrong content",
       "color": "E08A1E",
-      "text": "None"
+      "text": "None of the choices provided"
      }
     ]
    }
   ],
   "counts": {
    "StreamVibe": 1,
-   "JoyAI": 5,
+   "JoyAI": 14,
+   "MMDuet2": 1,
+   "ViSpeak": 2,
+   "LiveStar": 0,
+   "Mage-VL": 2
+  },
+  "lanes": {
+   "StreamVibe": [
+    248.0
+   ],
+   "JoyAI": [
+    240.0,
+    241.0,
+    242.0,
+    243.0,
+    244.0,
+    245.0,
+    246.0,
+    247.0,
+    248.0,
+    249.0,
+    250.0,
+    251.0,
+    252.0,
+    253.0
+   ],
+   "MMDuet2": [
+    248.0
+   ],
+   "ViSpeak": [
+    246.0,
+    250.0
+   ],
+   "LiveStar": [],
+   "Mage-VL": [
+    240.0,
+    248.0
+   ]
+  }
+ },
+ {
+  "key": "v154",
+  "env": "Physical",
+  "title": "Garage cleanup, interrupted",
+  "level": "Dynamic",
+  "sub": "Interruption",
+  "speed": 1.0,
+  "start": 38.0,
+  "end": 51.0,
+  "users": [
+   {
+    "t": 0.0,
+    "text": "I'm clearing cobwebs off the garage ceiling and organizing tools. Guide me on what step to take next as I work through it."
+   },
+   {
+    "t": 15.0,
+    "text": "Is the bin with the yellow lid for recycling or trash?"
+   },
+   {
+    "t": 46.0,
+    "text": "Where is the step stool?"
+   }
+  ],
+  "gold": [
+   46.0
+  ],
+  "resp": [
+   {
+    "t": 46.0,
+    "text": "The step stool is positioned in the center of the garage, near the recycling bins.",
+    "hit": true,
+    "base": [
+     {
+      "name": "JoyAI",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "The step stool is on the floor."
+     },
+     {
+      "name": "MMDuet2",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "The step stool is positioned against a wall near a white door, with a green broom leaning against it, and a green and yellow toy vehicle and a blue dustpan nearby."
+     },
+     {
+      "name": "ViSpeak",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "The person is cleaning the ceiling with a broom."
+     },
+     {
+      "name": "LiveStar",
+      "tag": "Silent",
+      "color": "E5484D",
+      "text": ""
+     },
+     {
+      "name": "Mage-VL",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "None of the choices provided"
+     }
+    ]
+   }
+  ],
+  "counts": {
+   "StreamVibe": 1,
+   "JoyAI": 4,
+   "MMDuet2": 1,
+   "ViSpeak": 5,
+   "LiveStar": 0,
+   "Mage-VL": 2
+  },
+  "lanes": {
+   "StreamVibe": [
+    46.0
+   ],
+   "JoyAI": [
+    40.0,
+    46.0,
+    47.0,
+    51.0
+   ],
+   "MMDuet2": [
+    46.0
+   ],
+   "ViSpeak": [
+    38.0,
+    43.0,
+    46.0,
+    47.0,
+    50.0
+   ],
+   "LiveStar": [],
+   "Mage-VL": [
+    40.0,
+    48.0
+   ]
+  }
+ },
+ {
+  "key": "v080",
+  "env": "Physical",
+  "title": "Fixing a garden hose, interrupted",
+  "level": "Dynamic",
+  "sub": "Interruption",
+  "speed": 1.0,
+  "start": 17.0,
+  "end": 30.0,
+  "users": [
+   {
+    "t": 0.0,
+    "text": "I'm fixing this outdoor garden hose connection. Let me know what to do next as I finish each step."
+   },
+   {
+    "t": 25.0,
+    "text": "What tool did I use to loosen the hose connection?"
+   }
+  ],
+  "gold": [
+   25.0
+  ],
+  "resp": [
+   {
+    "t": 25.0,
+    "text": "You used a pair of pliers to loosen the hose connection.",
+    "hit": true,
+    "base": [
+     {
+      "name": "JoyAI",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "You used a wrench to loosen the hose connection."
+     },
+     {
+      "name": "MMDuet2",
+      "tag": "Correct",
+      "color": "1F9D55",
+      "text": "I used a pair of pliers to loosen the hose connection."
+     },
+     {
+      "name": "ViSpeak",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "a pipe wrench"
+     },
+     {
+      "name": "LiveStar",
+      "tag": "Late",
+      "color": "E5484D",
+      "text": "The person then uses the tool to clean the black pipe."
+     },
+     {
+      "name": "Mage-VL",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "Sure, I can help you with that. What is the first step you want to take?"
+     }
+    ]
+   }
+  ],
+  "counts": {
+   "StreamVibe": 1,
+   "JoyAI": 6,
    "MMDuet2": 1,
    "ViSpeak": 3,
    "LiveStar": 0,
@@ -492,22 +983,122 @@ window.GALLERY = [
   },
   "lanes": {
    "StreamVibe": [
-    34.0
+    25.0
    ],
    "JoyAI": [
-    26.0,
-    30.0,
-    31.0,
-    33.0,
-    34.0
+    17.0,
+    22.0,
+    24.0,
+    25.0,
+    28.0,
+    30.0
    ],
    "MMDuet2": [
-    34.0
+    25.0
    ],
    "ViSpeak": [
-    30.0,
-    34.0,
-    37.0
+    18.0,
+    25.0,
+    27.0
+   ],
+   "LiveStar": [],
+   "Mage-VL": [
+    24.0
+   ]
+  }
+ },
+ {
+  "key": "v044",
+  "env": "Digital",
+  "title": "Customizing a Nextcloud dashboard",
+  "level": "Implicit",
+  "sub": "Tool use",
+  "speed": 1.0,
+  "start": 30.0,
+  "end": 45.0,
+  "users": [
+   {
+    "t": 0.0,
+    "text": "Walk me through customizing my Nextcloud dashboard so I can add the Recommended files and Upcoming tasks widgets, and remove Status and Weather."
+   }
+  ],
+  "gold": [
+   39.0
+  ],
+  "resp": [
+   {
+    "t": 40.0,
+    "text": "Click the 'Weather' tile in the widget menu to remove it from your dashboard.",
+    "hit": true,
+    "base": [
+     {
+      "name": "JoyAI",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "If you need to add more widgets, click \"Add widget\" again and select from the list."
+     },
+     {
+      "name": "MMDuet2",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "An 'Edit widgets' window is open, showing options like Status, Weather, Recent activity, Upcoming events, and more, with a hand-like cursor hovering over the Status widget, and a note about the weather service explaining that weather data is requested by the Nextcloud server for privacy without personal information, sourced from Meteo, Nominatim, and OpenTopoData."
+     },
+     {
+      "name": "ViSpeak",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "To add the Recommended files and Upcoming tasks widgets, and remove Status and Weather, follow these steps:\n1. Click on the \"Customize\" button on the Nextcloud dashboard.\n2. In the \"Edit widgets\" section, click on the \"Recommended files\" and \"Upcoming tasks\" widgets to add them to the dashboard.\n3. To remove the \"Status\" and \"Weather\" widgets, click on them and then click on the \"Remove\" button.\n4. Save your changes by clicking on the \"Save\" button."
+     },
+     {
+      "name": "LiveStar",
+      "tag": "Silent",
+      "color": "E5484D",
+      "text": ""
+     },
+     {
+      "name": "Mage-VL",
+      "tag": "Premature",
+      "color": "E5484D",
+      "text": "Sure, I can walk you through that process. First, you would need to click on the 'Edit widgets' button on your Nextcloud dashboard. Then, you would select the 'Recommended files' and 'Upcoming tasks' widgets and drag them to the desired location on your dashboard. After that, you would select the 'Status' and 'Weather' widgets and drag them to the trash can"
+     }
+    ]
+   }
+  ],
+  "counts": {
+   "StreamVibe": 1,
+   "JoyAI": 7,
+   "MMDuet2": 3,
+   "ViSpeak": 8,
+   "LiveStar": 0,
+   "Mage-VL": 1
+  },
+  "lanes": {
+   "StreamVibe": [
+    40.0
+   ],
+   "JoyAI": [
+    31.0,
+    39.0,
+    40.0,
+    41.0,
+    42.0,
+    43.0,
+    45.0
+   ],
+   "MMDuet2": [
+    32.0,
+    36.0,
+    40.0
+   ],
+   "ViSpeak": [
+    31.0,
+    33.0,
+    35.0,
+    37.0,
+    39.0,
+    41.0,
+    43.0,
+    45.0
    ],
    "LiveStar": [],
    "Mage-VL": [
@@ -516,143 +1107,108 @@ window.GALLERY = [
   }
  },
  {
-  "key": "w001",
+  "key": "v048",
   "env": "Digital",
-  "title": "Styling headings in a Word report",
+  "title": "Scheduling a message in Zulip",
   "level": "Implicit",
   "sub": "Tool use",
   "speed": 1.0,
-  "start": 0.0,
-  "end": 15.0,
+  "start": 37.0,
+  "end": 52.0,
   "users": [
    {
     "t": 0.0,
-    "text": "Walk me through formatting this Word inspection report, and make sure I'm picking the right structural styles for my headings and subheadings."
+    "text": "Walk me through finding Laura's message history in Zulip, and then show me how to draft and schedule a direct message to Jessica."
    }
   ],
   "gold": [
-   5.0,
-   10.0
+   47.0
   ],
   "resp": [
    {
-    "t": 6.0,
-    "text": "Select the 'Building Inspection Report' title and apply the Heading 1 style from the Styles gallery to set up your main document structure.",
+    "t": 47.0,
+    "text": "Click the 'Schedule message' option in the dropdown menu to set a time for your message to Jessica.",
     "hit": true,
     "base": [
      {
       "name": "JoyAI",
       "tag": "Wrong content",
       "color": "E08A1E",
-      "text": "The document is now titled \"Building Inspection Report\" with a clear outline: Introduction, Inspection Methodology, Findings, and Conclusion. This gives us a solid structure to follow."
+      "text": "To edit the scheduled message, click on the \"Edit\" button next to it."
      },
      {
       "name": "MMDuet2",
       "tag": "Wrong content",
       "color": "E08A1E",
-      "text": "The title 'Building Inspection Report' is bolded and 12-point Aptos font, and there are numbered lists under the headings 'General Information', 'Exterior Inspection', 'Interior Inspection', and 'Conclusion'."
+      "text": "A hand clicks on the three-dot icon next to the send button in the draft message box, causing a dropdown menu to appear with options including 'Schedule message', 'View scheduled messages', and 'Save draft and start a new message'."
      },
      {
       "name": "ViSpeak",
       "tag": "Wrong content",
       "color": "E08A1E",
-      "text": "The heading of the document is \"Building Inspection Report\". The subheading is \"1. General Information\"."
+      "text": "The video shows a person clicking on the \"New message\" button, typing \"Hello Jessica,\" and scheduling the message for 10:00 AM."
      },
      {
       "name": "LiveStar",
-      "tag": "Premature",
-      "color": "E5484D",
-      "text": "The video begins with a computer screen displaying a word processing software interface."
-     },
-     {
-      "name": "Mage-VL",
       "tag": "Late",
       "color": "E5484D",
-      "text": "Certainly! To format your Word document, you can start by selecting the text you want to format. For headings, you can use the 'Heading 1' style, which is typically used for the main title of your document. For subheadings, you can use the 'Heading 2' style, which is used for secondary headings. To apply these styles, simply click on the 'Styles"
-     }
-    ]
-   },
-   {
-    "t": 10.0,
-    "text": "Select Heading 1 from the Styles pane to apply it to the title.",
-    "hit": true,
-    "base": [
-     {
-      "name": "JoyAI",
-      "tag": "Wrong content",
-      "color": "E08A1E",
-      "text": "The Styles pane has opened, showing options like Heading 1, Heading 2, and more. We're about to apply a heading style to the title."
-     },
-     {
-      "name": "MMDuet2",
-      "tag": "Wrong content",
-      "color": "E08A1E",
-      "text": "A Styles window pops up showing options like Normal, No Spacing, Heading 1, Heading 2, and Title, with the cursor hovering over the Styles window indicating an intention to change the heading style."
-     },
-     {
-      "name": "ViSpeak",
-      "tag": "Wrong content",
-      "color": "E08A1E",
-      "text": "The video shows a Word document with a heading and subheading. The heading is \"Building Inspection Report\" and the subheading is \"1. External Information\"."
-     },
-     {
-      "name": "LiveStar",
-      "tag": "Silent",
-      "color": "E5484D",
-      "text": ""
+      "text": "The screen then moves to the right, showing a new message thread. The message thread is marked as \"New message thread\" and shows a conversation between two people. The screen then moves to the right, revealing a new message thread. The message thread is marked as \"New message thread\" and shows a conversation between two people. The screen then moves to the right, revealing a new message thread. The message thread is marked as \"New message thread\" and shows a conversation between two people."
      },
      {
       "name": "Mage-VL",
-      "tag": "Wrong content",
-      "color": "E08A1E",
-      "text": "Certainly! To format your Word document, you can start by selecting the text you want to format. For headings, you can use the 'Heading 1' style, which is typically used for the main title of your document. For subheadings, you can use the 'Heading 2' style, which is used for secondary headings. To apply these styles, simply click on the 'Styles"
+      "tag": "Premature",
+      "color": "E5484D",
+      "text": "Sure, I'll start by navigating to the 'DIRECT MESSAGES' section and selecting 'Jessica Indimil Lichuma' to view her message history. Then, I'll proceed to the 'DRAFTS' section to compose a new message."
      }
     ]
    }
   ],
   "counts": {
-   "StreamVibe": 2,
-   "JoyAI": 6,
-   "MMDuet2": 3,
-   "ViSpeak": 4,
-   "LiveStar": 2,
+   "StreamVibe": 1,
+   "JoyAI": 8,
+   "MMDuet2": 2,
+   "ViSpeak": 8,
+   "LiveStar": 1,
    "Mage-VL": 1
   },
   "lanes": {
    "StreamVibe": [
-    6.0,
-    10.0
+    47.0
    ],
    "JoyAI": [
-    0.0,
-    5.0,
-    9.0,
-    10.0,
-    13.0,
-    15.0
+    44.0,
+    45.0,
+    47.0,
+    48.0,
+    49.0,
+    50.0,
+    51.0,
+    52.0
    ],
    "MMDuet2": [
-    6.0,
-    10.0,
-    13.0
+    47.0,
+    50.0
    ],
    "ViSpeak": [
-    6.0,
-    9.0,
-    12.0,
-    15.0
+    37.0,
+    39.0,
+    41.0,
+    43.0,
+    45.0,
+    47.0,
+    49.0,
+    51.0
    ],
    "LiveStar": [
-    0.0,
-    1.0
+    50.0
    ],
    "Mage-VL": [
-    8.0
+    40.0
    ]
   }
  },
  {
-  "key": "w016",
+  "key": "v052",
   "env": "Digital",
   "title": "Renting a van on Expedia",
   "level": "Implicit",
@@ -754,108 +1310,200 @@ window.GALLERY = [
   }
  },
  {
-  "key": "w052",
+  "key": "v016",
   "env": "Digital",
-  "title": "Scheduling a message in Zulip",
+  "title": "Pixel-art rendering in Blender",
   "level": "Implicit",
   "sub": "Tool use",
   "speed": 1.0,
-  "start": 37.0,
-  "end": 52.0,
+  "start": 266.0,
+  "end": 281.0,
   "users": [
    {
     "t": 0.0,
-    "text": "Walk me through finding Laura's message history in Zulip, and then show me how to draft and schedule a direct message to Jessica."
+    "text": "Walk me through setting up toon shading and pixel art rendering in Blender, guiding me through the shader nodes and output settings."
    }
   ],
   "gold": [
-   47.0
+   275.0
   ],
   "resp": [
    {
-    "t": 47.0,
-    "text": "Click the 'Schedule message' option in the dropdown menu to set a time for your message to Jessica.",
+    "t": 276.0,
+    "text": "The pixel art render is complete. You can now export the image or continue refining the shader setup.",
     "hit": true,
     "base": [
      {
       "name": "JoyAI",
       "tag": "Wrong content",
       "color": "E08A1E",
-      "text": "To edit the scheduled message, click on the \"Edit\" button next to it."
+      "text": "Now let's add some additional effects. Add a ColorRamp node to create some additional shading."
      },
      {
       "name": "MMDuet2",
       "tag": "Wrong content",
       "color": "E08A1E",
-      "text": "A hand clicks on the three-dot icon next to the send button in the draft message box, causing a dropdown menu to appear with options including 'Schedule message', 'View scheduled messages', and 'Save draft and start a new message'."
+      "text": "The character model is shown in two different poses, with one frame showing the character in a running-like stance and the other in a more relaxed pose, both against a plain gray background, demonstrating the pixel-art style."
      },
      {
       "name": "ViSpeak",
       "tag": "Wrong content",
       "color": "E08A1E",
-      "text": "The video shows a person clicking on the \"New message\" button, typing \"Hello Jessica,\" and scheduling the message for 10:00 AM."
+      "text": ""
      },
      {
       "name": "LiveStar",
-      "tag": "Late",
+      "tag": "Silent",
       "color": "E5484D",
-      "text": "The screen then moves to the right, showing a new message thread. The message thread is marked as \"New message thread\" and shows a conversation between two people. The screen then moves to the right, revealing a new message thread. The message thread is marked as \"New message thread\" and shows a conversation between two people. The screen then moves to the right, revealing a new message thread. The message thread is marked as \"New message thread\" and shows a conversation between two people."
+      "text": ""
      },
      {
       "name": "Mage-VL",
       "tag": "Premature",
       "color": "E5484D",
-      "text": "Sure, I'll start by navigating to the 'DIRECT MESSAGES' section and selecting 'Jessica Indimil Lichuma' to view her message history. Then, I'll proceed to the 'DRAFTS' section to compose a new message."
+      "text": "{'error': '', 'answer': 'To set up toon shading and pixel art rendering in Blender, first, navigate to the shader nodes and select the Principled BSDF shader. Then, adjust the 'Roughness' value to 0.0 to achieve a toon shading effect. Next, go to the output settings and select 'Pixel Art' as the render engine. Adjust the"
      }
     ]
    }
   ],
   "counts": {
    "StreamVibe": 1,
-   "JoyAI": 8,
-   "MMDuet2": 2,
-   "ViSpeak": 8,
-   "LiveStar": 1,
-   "Mage-VL": 1
+   "JoyAI": 16,
+   "MMDuet2": 4,
+   "ViSpeak": 3,
+   "LiveStar": 0,
+   "Mage-VL": 2
   },
   "lanes": {
    "StreamVibe": [
-    47.0
+    276.0
    ],
    "JoyAI": [
-    44.0,
-    45.0,
-    47.0,
-    48.0,
-    49.0,
-    50.0,
-    51.0,
-    52.0
+    266.0,
+    267.0,
+    268.0,
+    269.0,
+    270.0,
+    271.0,
+    272.0,
+    273.0,
+    274.0,
+    275.0,
+    276.0,
+    277.0,
+    278.0,
+    279.0,
+    280.0,
+    281.0
    ],
    "MMDuet2": [
-    47.0,
-    50.0
+    276.0,
+    277.0,
+    279.0,
+    281.0
    ],
    "ViSpeak": [
-    37.0,
-    39.0,
-    41.0,
-    43.0,
-    45.0,
-    47.0,
-    49.0,
-    51.0
+    266.0,
+    275.0,
+    280.0
    ],
-   "LiveStar": [
-    50.0
-   ],
+   "LiveStar": [],
    "Mage-VL": [
-    40.0
+    272.0,
+    280.0
    ]
   }
  },
  {
-  "key": "w002",
+  "key": "v049",
+  "env": "Digital",
+  "title": "Slicing an image in Photoshop",
+  "level": "Implicit",
+  "sub": "Tool use",
+  "speed": 1.0,
+  "start": 0.0,
+  "end": 8.0,
+  "users": [
+   {
+    "t": 0.0,
+    "text": "Walk me through slicing this image into a 3x3 grid in Photoshop and exporting the pieces as separate files."
+   }
+  ],
+  "gold": [
+   3.0
+  ],
+  "resp": [
+   {
+    "t": 3.0,
+    "text": "Open the image you want to slice, then go to File > Automate > Crop to create the 3x3 grid.",
+    "hit": true,
+    "base": [
+     {
+      "name": "JoyAI",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "Now go to File > New to create a new document. Set the width and height to 1000 pixels each, and make sure the resolution is 72 pixels/inch."
+     },
+     {
+      "name": "MMDuet2",
+      "tag": "Silent",
+      "color": "E5484D",
+      "text": ""
+     },
+     {
+      "name": "ViSpeak",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "In Photoshop, click on the \"File\" option in the top left corner of the screen, then click on \"New\" to create a new document. Then, click on the \"Window\" option in the top left corner of the screen, then click on \"Split Window\" to split the screen into three parts. Then, click on the \"Select\" option in the top left corner of the screen, then click on \"All\" to select the entire image. Then, click on the \"Edit\" option in the top left corner of the screen, then click on \"Copy\" to copy the selected image. Then, click on the \"File\" option in the top left corner of the screen, then click on \"New\" to create a new document. Then, click on the \"Edit\" option in the top left corner of the screen, then click on \"Paste\" to paste the copied image into the new document. Then, click on the \"File\" option in the top left corner of the screen, then click on \"Save As\" to save the image as a separate file."
+     },
+     {
+      "name": "LiveStar",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "Then the screen switches to a photo editing software interface, where a photo of a castle is being edited."
+     },
+     {
+      "name": "Mage-VL",
+      "tag": "Silent",
+      "color": "E5484D",
+      "text": ""
+     }
+    ]
+   }
+  ],
+  "counts": {
+   "StreamVibe": 1,
+   "JoyAI": 2,
+   "MMDuet2": 0,
+   "ViSpeak": 2,
+   "LiveStar": 5,
+   "Mage-VL": 0
+  },
+  "lanes": {
+   "StreamVibe": [
+    3.0
+   ],
+   "JoyAI": [
+    0.0,
+    5.0
+   ],
+   "MMDuet2": [],
+   "ViSpeak": [
+    3.0,
+    6.0
+   ],
+   "LiveStar": [
+    0.0,
+    1.0,
+    2.0,
+    3.0,
+    8.0
+   ],
+   "Mage-VL": []
+  }
+ },
+ {
+  "key": "v085",
   "env": "Digital",
   "title": "Zotero cleanup: answer, then keep tracking",
   "level": "Dynamic",
@@ -996,7 +1644,7 @@ window.GALLERY = [
   }
  },
  {
-  "key": "w003",
+  "key": "v086",
   "env": "Digital",
   "title": "Skyscanner search: answer, then recap",
   "level": "Dynamic",
@@ -1132,6 +1780,324 @@ window.GALLERY = [
    "Mage-VL": [
     8.0,
     16.0
+   ]
+  }
+ },
+ {
+  "key": "v166",
+  "env": "Digital",
+  "title": "Element settings, with side questions",
+  "level": "Dynamic",
+  "sub": "Interruption",
+  "speed": 1.0,
+  "start": 54.0,
+  "end": 67.0,
+  "users": [
+   {
+    "t": 0.0,
+    "text": "I'm customizing my Element messaging options and testing out markdown formatting. Give me a quick summary whenever I finish a main section."
+   },
+   {
+    "t": 13.0,
+    "text": "Are my encryption keys being backed up right now?"
+   },
+   {
+    "t": 41.0,
+    "text": "Where can I find Security and Privacy?"
+   },
+   {
+    "t": 62.0,
+    "text": "Which room is currently listed under low priority?"
+   }
+  ],
+  "gold": [
+   62.0
+  ],
+  "resp": [
+   {
+    "t": 62.0,
+    "text": "The room labeled 'b-room' is currently listed under low priority.",
+    "hit": true,
+    "base": [
+     {
+      "name": "JoyAI",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "The room 'low-priority' is listed under low priority."
+     },
+     {
+      "name": "MMDuet2",
+      "tag": "Correct",
+      "color": "1F9D55",
+      "text": "The room 'b room' is currently listed under low priority."
+     },
+     {
+      "name": "ViSpeak",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "The room \"UDITA MANDAL\" is currently listed under low priority."
+     },
+     {
+      "name": "LiveStar",
+      "tag": "Silent",
+      "color": "E5484D",
+      "text": ""
+     },
+     {
+      "name": "Mage-VL",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "None of the choices provided"
+     }
+    ]
+   }
+  ],
+  "counts": {
+   "StreamVibe": 1,
+   "JoyAI": 13,
+   "MMDuet2": 1,
+   "ViSpeak": 5,
+   "LiveStar": 0,
+   "Mage-VL": 2
+  },
+  "lanes": {
+   "StreamVibe": [
+    62.0
+   ],
+   "JoyAI": [
+    54.0,
+    55.0,
+    56.0,
+    57.0,
+    59.0,
+    60.0,
+    61.0,
+    62.0,
+    63.0,
+    64.0,
+    65.0,
+    66.0,
+    67.0
+   ],
+   "MMDuet2": [
+    62.0
+   ],
+   "ViSpeak": [
+    57.0,
+    59.0,
+    62.0,
+    64.0,
+    66.0
+   ],
+   "LiveStar": [],
+   "Mage-VL": [
+    56.0,
+    64.0
+   ]
+  }
+ },
+ {
+  "key": "v153",
+  "env": "Digital",
+  "title": "Updating a WeKan board, interrupted",
+  "level": "Dynamic",
+  "sub": "Interruption",
+  "speed": 1.0,
+  "start": 20.0,
+  "end": 33.0,
+  "users": [
+   {
+    "t": 0.0,
+    "text": "I'm setting up our project boards in WeKan. Let me know what to do next after I finish each step."
+   },
+   {
+    "t": 12.0,
+    "text": "What label is currently selected for this card?"
+   },
+   {
+    "t": 28.0,
+    "text": "Did I remove the high priority label from the card?"
+   }
+  ],
+  "gold": [
+   28.0
+  ],
+  "resp": [
+   {
+    "t": 28.0,
+    "text": "Yes, you removed the high priority label from the card.",
+    "hit": true,
+    "base": [
+     {
+      "name": "JoyAI",
+      "tag": "Correct",
+      "color": "1F9D55",
+      "text": "Yes, you removed the 'High Priority' label from the card."
+     },
+     {
+      "name": "MMDuet2",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "No, the high priority label is still visible and selected for the card."
+     },
+     {
+      "name": "ViSpeak",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "yes"
+     },
+     {
+      "name": "LiveStar",
+      "tag": "Silent",
+      "color": "E5484D",
+      "text": ""
+     },
+     {
+      "name": "Mage-VL",
+      "tag": "Premature",
+      "color": "E5484D",
+      "text": "None"
+     }
+    ]
+   }
+  ],
+  "counts": {
+   "StreamVibe": 1,
+   "JoyAI": 13,
+   "MMDuet2": 1,
+   "ViSpeak": 5,
+   "LiveStar": 0,
+   "Mage-VL": 2
+  },
+  "lanes": {
+   "StreamVibe": [
+    28.0
+   ],
+   "JoyAI": [
+    20.0,
+    22.0,
+    23.0,
+    24.0,
+    25.0,
+    26.0,
+    27.0,
+    28.0,
+    29.0,
+    30.0,
+    31.0,
+    32.0,
+    33.0
+   ],
+   "MMDuet2": [
+    28.0
+   ],
+   "ViSpeak": [
+    22.0,
+    26.0,
+    28.0,
+    30.0,
+    33.0
+   ],
+   "LiveStar": [],
+   "Mage-VL": [
+    24.0,
+    32.0
+   ]
+  }
+ },
+ {
+  "key": "v128",
+  "env": "Digital",
+  "title": "Setting up Bitwarden, interrupted",
+  "level": "Dynamic",
+  "sub": "Interruption",
+  "speed": 1.0,
+  "start": 30.0,
+  "end": 43.0,
+  "users": [
+   {
+    "t": 0.0,
+    "text": "I'm setting up my Bitwarden vault and generating new passwords. Tell me what to do next as I complete each step."
+   },
+   {
+    "t": 20.0,
+    "text": "Which email address is currently signed into Bitwarden?"
+   },
+   {
+    "t": 38.0,
+    "text": "Do I have any items currently saved in my vault?"
+   }
+  ],
+  "gold": [
+   38.0
+  ],
+  "resp": [
+   {
+    "t": 38.0,
+    "text": "No, your vault is currently empty.",
+    "hit": true,
+    "base": [
+     {
+      "name": "JoyAI",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "No, your vault is empty. You just saved one password, but there aren't any other items yet."
+     },
+     {
+      "name": "MMDuet2",
+      "tag": "Correct",
+      "color": "1F9D55",
+      "text": "No, there are no items currently saved in the vault."
+     },
+     {
+      "name": "ViSpeak",
+      "tag": "Correct",
+      "color": "1F9D55",
+      "text": "No, there are no items in the vault."
+     },
+     {
+      "name": "LiveStar",
+      "tag": "Silent",
+      "color": "E5484D",
+      "text": ""
+     },
+     {
+      "name": "Mage-VL",
+      "tag": "Wrong content",
+      "color": "E08A1E",
+      "text": "None"
+     }
+    ]
+   }
+  ],
+  "counts": {
+   "StreamVibe": 1,
+   "JoyAI": 4,
+   "MMDuet2": 1,
+   "ViSpeak": 1,
+   "LiveStar": 0,
+   "Mage-VL": 2
+  },
+  "lanes": {
+   "StreamVibe": [
+    38.0
+   ],
+   "JoyAI": [
+    30.0,
+    31.0,
+    32.0,
+    38.0
+   ],
+   "MMDuet2": [
+    38.0
+   ],
+   "ViSpeak": [
+    38.0
+   ],
+   "LiveStar": [],
+   "Mage-VL": [
+    32.0,
+    40.0
    ]
   }
  }

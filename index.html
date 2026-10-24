@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,500;0,600;0,700;1,500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="static/style.css?v=88cc3bf1">
+<link rel="stylesheet" href="static/style.css?v=7d84252d">
 </head>
 <body>
 <div class="progress" id="progress"></div>
@@ -72,7 +72,7 @@
 <!-- ============ PROMO VIDEO ============ -->
 <section class="promo-sec" id="video">
   <div class="wrap">
-    <div class="promo-frame rv">
+    <div class="promo-frame" id="promoFrame">
       <video id="promo" src="static/video/promo.mp4" poster="static/video/promo.jpg" muted playsinline controls preload="metadata"></video>
     </div>
     <p class="promo-cap rv">Project video (1:51, no audio).</p>
@@ -82,12 +82,12 @@
 <main>
 
 <!-- ============ STATS ============ -->
-<section class="wrap stats">
-  <div class="stat rv"><span class="num">4,100</span><span class="lbl">evaluation samples</span></div>
-  <div class="stat rv"><span class="num">20,546</span><span class="lbl">annotated help points</span></div>
-  <div class="stat rv"><span class="num">183.4</span><span class="lbl">hours of video</span></div>
-  <div class="stat rv"><span class="num">85K</span><span class="lbl">training samples</span></div>
-  <div class="stat rv"><span class="num">10</span><span class="lbl">intent subtypes</span></div>
+<section class="wrap stats stagger">
+  <div class="stat rv"><span class="num" data-to="4100">4,100</span><span class="lbl">evaluation samples</span></div>
+  <div class="stat rv"><span class="num" data-to="20546">20,546</span><span class="lbl">annotated help points</span></div>
+  <div class="stat rv"><span class="num" data-to="183.4" data-dec="1">183.4</span><span class="lbl">hours of video</span></div>
+  <div class="stat rv"><span class="num" data-to="85" data-suf="K">85K</span><span class="lbl">training samples</span></div>
+  <div class="stat rv"><span class="num" data-to="10">10</span><span class="lbl">intent subtypes</span></div>
 </section>
 
 <!-- ============ MOTIVATION ============ -->
@@ -95,7 +95,7 @@
   <div class="eyebrow rv">Motivation</div>
   <h2 class="rv">Why proactive assistance is hard</h2>
   <p class="lead rv">Most streaming video assistants respond when a request names the event to watch for, such as “notify me when a goal is scored”. In everyday tasks people usually state a goal instead, and they change their requests as the task goes on. Three problems follow.</p>
-  <div class="gaps">
+  <div class="gaps stagger">
     <div class="gap rv"><span class="gn">1</span><h3>The intent is often implicit</h3><p>“Help me finish this whenever I get stuck” names no trigger. The assistant has to decide from the video when help is needed and what kind.</p></div>
     <div class="gap rv"><span class="gn">2</span><h3>The task state keeps changing</h3><p>Earlier replies and user actions change what is still useful. Without tracking progress, assistants repeat advice, give outdated advice, or miss steps.</p></div>
     <div class="gap rv"><span class="gn">3</span><h3>Requests are revised mid-task</h3><p>Users add constraints, replace a request, or ask a side question. Assistants tend to keep following the first request.</p></div>
@@ -111,7 +111,7 @@
   <div class="eyebrow rv">Task</div>
   <h2 class="rv">Three levels of user intent</h2>
   <p class="lead rv">StreamVibe-Bench grades proactive interaction by how explicit the intent is and whether it changes during the task.</p>
-  <div class="levels">
+  <div class="levels stagger">
     <div class="level lv-ex rv">
       <div class="lv-tag">Level 1 · Explicit</div>
       <p>The user names a condition or event; the assistant responds when it occurs.</p>
@@ -222,20 +222,20 @@
     <img src="static/img/method.webp" alt="StreamVibe method overview" loading="lazy">
     <figcaption><b>Figure 3.</b> (a) StreamVibe-Harness at inference time. (b) Stage 1, adaptive streaming SFT. (c) Stage 2, localized trajectory RL.</figcaption>
   </figure>
-  <div class="mgrid">
+  <div class="mgrid stagger">
     <div class="mcol rv">
-      <h4>StreamVibe-Harness</h4>
+      <h4><span class="st">H</span>StreamVibe-Harness</h4>
       <p>The interaction state holds the active requests, the task progress and the replies already delivered. It changes only when the conversation or the video gives enough evidence.</p>
       <p>Each request is tracked on its own. One-time requests close once they are satisfied; standing requests stay open. The Harness decides which requests are still valid, but not when to speak.</p>
       <p>Recent history is kept in detail and older history is compressed. The parts relevant to the active requests are retrieved for each decision.</p>
     </div>
     <div class="mcol rv">
-      <h4>Stage 1: adaptive streaming SFT</h4>
+      <h4><span class="st">1</span>Stage 1: adaptive streaming SFT</h4>
       <p>Training sources differ a lot in how often the model should speak. The loss re-weights silence and response decisions to the current training mix and weights reply tokens separately, so the model does not drift toward always staying silent or always talking.</p>
       <p>Data: 70K samples from StreamVibe-85K plus 768K general streaming-video samples.</p>
     </div>
     <div class="mcol rv">
-      <h4>Stage 2: localized trajectory RL</h4>
+      <h4><span class="st">2</span>Stage 2: localized trajectory RL</h4>
       <p>Rewarding whole trajectories mixes good and bad decisions. We instead roll out short causal segments around help points and optimize them with GRPO.</p>
       <p>The reward is <span class="math">R = 0.7·R<sub>align</sub> + 0.3·R<sub>glob</sub></span>. R<sub>align</sub> scores each matched reply on timing and content; R<sub>glob</sub> scores the segment for coverage, order, consistency and redundancy. 15K tasks.</p>
     </div>
@@ -249,7 +249,7 @@
   <h2 class="rv">Results</h2>
   <p class="lead rv">Baselines are proprietary models (Gemini-3.1-Pro, Gemini-3.8-Flash, GPT-Realtime-2.1), open-source offline models (Qwen3-VL-8B, Qwen3.5-9B, JoyAI-VL-Interaction) and open-source streaming models (MMDuet2, Mage-VL, LiveStar, ViSpeak, VideoLLM-Online). StreamVibe-Bench numbers use trajectory evaluation with a ±2 s tolerance unless noted.</p>
 
-  <div class="kgrid">
+  <div class="kgrid stagger">
     <div class="kcard rv kc">
       <h4>Content F1 on StreamVibe-Bench</h4>
       <p class="ksub">StreamVibe-VL (RL) vs. the strongest open-source baseline at each level.</p>
@@ -330,7 +330,7 @@
 </footer>
 
 <div class="lightbox" id="lightbox"><img alt=""></div>
-<script src="static/gallery.js?v=a1cb3fa6"></script>
-<script src="static/main.js?v=34d134c2"></script>
+<script src="static/gallery.js?v=3c3ba81f"></script>
+<script src="static/main.js?v=81ce5040"></script>
 </body>
 </html>

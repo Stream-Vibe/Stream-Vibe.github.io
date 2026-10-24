@@ -47,9 +47,29 @@
     $$('.num[data-to]', el).forEach(countUp);
     if (el.matches('.num[data-to]')) countUp(el);
     $$('.anim-svg', el).forEach(playSvg);
-    if (el.classList.contains('kc')) $$('[data-w]', el).forEach(x => x.style.setProperty('--w', x.dataset.w));
+    if (el.classList.contains('kc')) { $$('[data-w]', el).forEach(x => x.style.setProperty('--w', x.dataset.w)); $$('.db-dot.o', el).forEach(d => d.style.left = d.dataset.x + '%'); }
+    if (el.classList.contains('level')) playChat(el);
   }), { threshold: 0.18 });
+  $$('.stagger').forEach(g => [...g.children].forEach((ch, i) => { if (ch.classList.contains('rv')) ch.style.transitionDelay = `${i * 0.09}s`; }));
   $$('.rv').forEach(el => io.observe(el));
+  // the three level cards play their conversation once, in order, when they come into view
+  function playChat(card) {
+    const msgs = $$('.mc', card); msgs.forEach(m => m.classList.add('hidden'));
+    let i = 0;
+    const step = () => {
+      if (i >= msgs.length) return;
+      const m = msgs[i++];
+      if (m.classList.contains('a')) {
+        const t = document.createElement('div'); t.className = 'mc a typing-dots show'; t.innerHTML = '<span class="typing"><i></i><i></i><i></i></span>';
+        m.before(t); setTimeout(() => { t.remove(); m.classList.remove('hidden'); m.classList.add('show'); setTimeout(step, 450); }, 700);
+      } else { m.classList.remove('hidden'); m.classList.add('show'); setTimeout(step, m.classList.contains('w') ? 600 : 500); }
+    };
+    setTimeout(step, 300);
+  }
+  // promo frame grows to full size as it scrolls into view
+  const pf = $('#promoFrame');
+  const growPromo = () => { const r = pf.getBoundingClientRect(); const p = Math.max(0, Math.min(1, 1 - (r.top - innerHeight * 0.15) / (innerHeight * 0.7))); pf.style.setProperty('--s', (0.9 + 0.1 * p).toFixed(4)); };
+  addEventListener('scroll', growPromo, { passive: true }); growPromo();
   $$('.replay').forEach(b => b.onclick = () => playSvg($('#' + b.dataset.for)));
 
   // ---------- lightbox ----------
@@ -207,9 +227,9 @@
     box.innerHTML = `<div class="db">${rows.map(([lab, b, o]) => `
       <div class="db-row"><span class="db-lab">${lab}</span><span class="db-track"><span class="db-in">
         <i class="db-line" data-w="1" style="left:${x(b)}%;width:${x(o) - x(b)}%"></i>
-        <i class="db-dot b" style="left:${x(b)}%"></i><i class="db-dot o" style="left:${x(o)}%"></i>
+        <i class="db-dot b" style="left:${x(b)}%"></i><i class="db-dot o" data-x="${x(o)}" style="left:${x(b)}%"></i>
         <span class="db-v b" style="left:${x(b)}%">${b.toFixed(dec)}</span><span class="db-v o" style="left:${x(o)}%">${o.toFixed(dec)}</span>
-      </span></span><span class="db-delta">+${(o - b).toFixed(dec === 2 ? 2 : 1)}</span></div>`).join('')}</div>`;
+      </span></span><span class="db-delta"><span>+${(o - b).toFixed(dec === 2 ? 2 : 1)}</span></span></div>`).join('')}</div>`;
     $$('.db-row', box).forEach((r, i) => hoverTip(r, `<b>${rows[i][0]}</b><br>${oursName}: <b>${rows[i][2].toFixed(dec)}</b><br>${baseName}: ${rows[i][1].toFixed(dec)}`));
   }
   function hbars(box, groups) {

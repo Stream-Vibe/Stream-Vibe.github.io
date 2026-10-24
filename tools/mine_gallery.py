@@ -15,11 +15,13 @@ level = lambda ds: 'Explicit' if ds.startswith('ps40k') else 'Implicit' if ds.st
 clean = lambda t: re.sub(r'<\|im_end\|>|</?response>', '', t or '').strip()
 
 res = {}
-for f in ['_work/allres.tsv', '_work/win_res.tsv']:
+for f in ['_work/allres.tsv', '_work/win_res.tsv', '_work/all2_res.tsv']:
     for l in open(f):
         v, r = l.rstrip('\n').split('\t'); m = re.search(r'(\d+)x(\d+)', r)
         if m: res[v] = tuple(map(int, m.groups()))
-W = [w for w in json.load(open('/home/chengzhiliu_google_com/code/talk/scripts/promo3/windows.json'))
+SRC = sys.argv[1] if len(sys.argv) > 1 else '/home/chengzhiliu_google_com/code/talk/scripts/promo3/windows.json'
+OUT = sys.argv[2] if len(sys.argv) > 2 else '_work/win_cands.json'
+W = [w for w in json.load(open(SRC))
      if w['video'] in res and min(res[w['video']]) >= 720]
 
 judges, traces = {}, {}
@@ -89,6 +91,6 @@ for w in W:
     out.append(dict(key=f"w{len(out):03d}", eid=eid, suite=suite, level=lvl, sub=SUB.get(fam, fam), video=w['video'], res=res[w['video']],
                     source=w['source'], start=ws, end=we, users=users, gold=gin, resp=resp,
                     counts={'StreamVibe': w['n'], **counts}, lanes={'StreamVibe': [x[0] for x in w['replies']], **lanes}, contrast=contrast))
-json.dump(out, open('_work/win_cands.json', 'w'), ensure_ascii=False, indent=1)
+json.dump(out, open(OUT, 'w'), ensure_ascii=False, indent=1)
 import collections
 print(len(W), len(out), collections.Counter(o['level'] for o in out))
