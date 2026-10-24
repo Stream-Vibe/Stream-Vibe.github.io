@@ -142,11 +142,11 @@
   <div class="wrap">
     <div class="eyebrow light rv">Demos</div>
     <h2 class="rv">See it act, at the right moment.</h2>
-    <p class="lead rv">Selected StreamVibe-Bench streams. StreamVibe-VL replies pop up the moment it decides to speak; the timeline below each video shows when every model spoke over the same stream, against the annotated help points.</p>
+    <p class="lead rv">Selected StreamVibe-Bench moments for each intent level. StreamVibe-VL replies pop up the moment it decides to speak; the timeline below the video shows when every model spoke over the same clip, against the annotated help points.</p>
 
     <div class="filters rv">
-      <div class="chips" id="scenChips"></div>
-      <div class="chips small" id="levelChips"></div>
+      <div class="chips" id="levelChips"></div>
+      <div class="chips small" id="envChips"></div>
     </div>
 
     <div class="theater rv" id="theater">
@@ -262,13 +262,18 @@
     <div class="chart-tip" id="chartTip"></div>
   </div>
 
-  <p class="lead rv" style="margin-top:28px">Main results on StreamVibe-Bench. <b>Bold</b> / <u>underline</u>: best / second best within each block.</p>
-  <div class="seg rv" id="resSeg">
-    <button data-k="traj" class="on">Trajectory (self history)</button>
-    <button data-k="point">Pointwise (gold history)</button>
+  <div class="explorer rv" id="explorer">
+    <div class="ex-head">
+      <div><b>All models on StreamVibe-Bench</b><span class="muted"> · ±2 s tolerance · hover a bar for details</span></div>
+      <div class="ex-ctrls">
+        <div class="seg" id="exSet"><button data-k="traj" class="on">Trajectory</button><button data-k="point">Pointwise</button></div>
+        <div class="seg" id="exMet"><button data-m="2">Timing F1</button><button data-m="3">FPR ↓</button><button data-m="4">Answer score</button><button data-m="5" class="on">Content F1</button></div>
+      </div>
+    </div>
+    <div class="ex-panels" id="exPanels"></div>
+    <div class="ex-legend"><span><i class="lg-o"></i>StreamVibe-VL (ours)</span><span><i class="lg-b"></i>baselines</span><span class="muted" id="exNote"></span></div>
+    <div class="chart-tip" id="exTip"></div>
   </div>
-  <div class="table-wrap rv"><table class="res" id="resTable"></table></div>
-  <p class="tnote">Streaming models do not support pointwise evaluation. P/R/F1/FPR measure response timing; ANS (answer score) and C-F1 (content F1) measure response quality.</p>
 
   <div class="findings">
     <div class="finding rv"><span class="fi">RQ1</span><div><b>Stronger proactive interaction, general understanding preserved.</b> StreamVibe-VL beats open-source baselines with the highest Content F1 under trajectory evaluation; RL adds gains over SFT, largest on dynamic intents. It transfers to EgoProactive and IPIBench and improves over its base model on every general video benchmark.</div></div>
