@@ -115,19 +115,19 @@
   // Demo theater + gallery
   // =====================================================================
   const G = window.GALLERY;
-  const LEVELS = ['All', 'Explicit', 'Implicit', 'Dynamic'], ENVS = ['All environments', 'Physical', 'GUI'];
-  let lvl = 'All', env = 'All environments', cur = null, shown = new Set(), tvVisible = false;
+  const ENVS = ['Physical', 'Digital'], LEVELS = ['All', 'Explicit', 'Implicit', 'Dynamic'];
+  let env = 'Physical', lvl = 'All', cur = null, shown = new Set(), tvVisible = false;
   const tv = $('#tv'), chat = $('#tvChat'), lanes = $('#lanes');
   const fmt = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
 
-  LEVELS.forEach(l => {
-    const b = document.createElement('button'); b.dataset.l = l;
-    b.innerHTML = `${l === 'All' ? 'All intents' : l + ' intent'}<span class="ct">${l === 'All' ? G.length : G.filter(d => d.level === l).length}</span>`;
-    b.onclick = () => { lvl = l; filter(); }; $('#levelChips').appendChild(b);
-  });
   ENVS.forEach(e => {
-    const b = document.createElement('button'); b.dataset.e = e; b.textContent = e;
-    b.onclick = () => { env = e; filter(); }; $('#envChips').appendChild(b);
+    const b = document.createElement('button'); b.dataset.e = e;
+    b.innerHTML = `${e}<span class="ct">${G.filter(d => d.env === e).length}</span>`;
+    b.onclick = () => { env = e; lvl = 'All'; filter(); }; $('#envChips').appendChild(b);
+  });
+  LEVELS.forEach(l => {
+    const b = document.createElement('button'); b.dataset.l = l; b.textContent = l === 'All' ? 'All intents' : `${l} intent`;
+    b.onclick = () => { if (!b.disabled) { lvl = l; filter(); } }; $('#levelChips').appendChild(b);
   });
   G.forEach(d => {
     const c = document.createElement('div'); c.className = 'card-d'; c.dataset.k = d.key;
@@ -144,9 +144,13 @@
   });
 
   function filter() {
-    $$('#levelChips button').forEach(b => b.classList.toggle('on', b.dataset.l === lvl));
     $$('#envChips button').forEach(b => b.classList.toggle('on', b.dataset.e === env));
-    const vis = G.filter(d => (lvl === 'All' || d.level === lvl) && (env === 'All environments' || d.env === env));
+    $$('#levelChips button').forEach(b => {
+      const n = G.filter(d => d.env === env && (b.dataset.l === 'All' || d.level === b.dataset.l)).length;
+      b.disabled = n === 0; b.classList.toggle('on', b.dataset.l === lvl);
+      b.innerHTML = `${b.dataset.l === 'All' ? 'All intents' : b.dataset.l + ' intent'}<span class="ct">${n}</span>`;
+    });
+    const vis = G.filter(d => d.env === env && (lvl === 'All' || d.level === lvl));
     $$('#grid .card-d').forEach(c => c.classList.toggle('hide', !vis.some(d => d.key === c.dataset.k)));
     if (vis.length && !vis.includes(cur)) load(vis[0]);
   }
@@ -174,7 +178,8 @@
     $('#tvSpeed').textContent = d.speed > 1 ? `${d.speed}×` : '1×';
     $('#tvTitle').textContent = d.title;
     buildLanes(d); reset();
-    if (play || tvVisible) tv.play().catch(() => {});
+    cur.ev.forEach(e => { if (e.t <= d.start + 0.05) { shown.add(e.id); render(e, true); } });
+    if (play || tvVisible) tv.play().catch(() => $('#tvBig').classList.add('on'));
   }
   function reset() { shown.clear(); chat.innerHTML = '<div class="chat-hint">The conversation appears here as the stream plays.</div>'; $$('.dot', lanes).forEach(x => x.classList.remove('lit')); }
 
@@ -212,11 +217,12 @@
     $$('.dot', lanes).forEach(x => x.classList.toggle('lit', +x.dataset.t <= t));
     cur.ev.forEach(e => { if (e.t <= t + 0.05 && !shown.has(e.id)) { shown.add(e.id); render(e); } });
   });
-  tv.addEventListener('ended', () => setTimeout(() => { if (tv.ended) { reset(); tv.currentTime = 0; tv.play().catch(() => {}); } }, 3500));
-  tv.addEventListener('play', () => $('#tvPlay').textContent = '❚❚');
-  tv.addEventListener('pause', () => $('#tvPlay').textContent = '▶');
+  tv.addEventListener('ended', () => setTimeout(() => { if (tv.ended) $('#tvRestart').click(); }, 3500));
+  tv.addEventListener('play', () => { $('#tvPlay').textContent = '❚❚'; $('#tvBig').classList.remove('on'); });
+  tv.addEventListener('pause', () => { $('#tvPlay').textContent = '▶'; if (!tv.ended) $('#tvBig').classList.add('on'); });
+  $('#tvBig').onclick = () => tv.play();
   $('#tvPlay').onclick = () => tv.paused ? tv.play() : tv.pause();
-  $('#tvRestart').onclick = () => { reset(); tv.currentTime = 0; tv.play(); };
+  $('#tvRestart').onclick = () => { reset(); cur.ev.forEach(e => { if (e.t <= cur.start + 0.05) { shown.add(e.id); render(e, true); } }); tv.currentTime = 0; tv.play(); };
   lanes.addEventListener('click', e => {
     const a = $('.lane-area', lanes).getBoundingClientRect();
     const t = cur.start + Math.max(0, Math.min(1, (e.clientX - a.left) / a.width)) * (cur.end - cur.start);

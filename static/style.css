@@ -234,6 +234,7 @@ h3.sub { font-family: var(--serif); font-size: 1.4rem; margin: 48px 0 14px; }
 .chat-hint { color: #6f7a90; font-size: .85rem; text-align: center; margin: auto 0; }
 
 .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 26px; }
+.chips button:disabled { opacity: .35; cursor: not-allowed; }
 .card-d { border-radius: 16px; overflow: hidden; background: #141c33; border: 1px solid #222c4a; cursor: pointer; transition: transform .3s, border-color .3s, box-shadow .3s; position: relative; }
 .card-d:hover { transform: translateY(-5px); border-color: #4c6bb5; box-shadow: 0 18px 40px rgba(0,0,0,.45); }
 .card-d.on { border-color: #8ec5ff; box-shadow: 0 0 0 2px rgba(142,197,255,.45); }
@@ -367,3 +368,7 @@ footer .small { font-size: .85rem; margin: 0; }
 .lg-o { background: #2f6fd1; } .lg-b { background: #c3c9d4; }
 @media (max-width: 900px) { .ex-panels { grid-template-columns: 1fr; } }
 @media (max-width: 760px) { .ex-ctrls .seg button { padding: 6px 10px; font-size: .78rem; } .ex-row { grid-template-columns: 112px 1fr 38px; } }
+.th-big { position: absolute; left: 50%; top: 50%; width: 72px; height: 72px; margin: -36px 0 0 -36px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(255,255,255,.92); color: #111; font-size: 1.6rem; display: none; box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+.th-big.on { display: block; animation: pop .3s ease-out; }
+.chips.small button .ct { opacity: .6; margin-left: 4px; }
