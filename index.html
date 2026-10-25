@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="static/style.css?v=c786ce33">
+<link rel="stylesheet" href="static/style.css?v=328ecfd8">
 </head>
 <body>
 <div class="progress" id="progress"></div>
@@ -95,16 +95,16 @@
     <div class="split-text">
       <div class="eyebrow rv"><span>01</span>Motivation</div>
       <h2 class="rv">Why proactive assistance is hard</h2>
-      <p class="lead rv">Most streaming video assistants respond when a request names the event to watch for, such as “notify me when a goal is scored”. In everyday tasks people usually state a goal instead, and they change their requests as the task goes on. Three problems follow.</p>
+      <p class="lead rv">Today’s streaming assistants wait for a request that names the event to watch for. Real users state goals and change them as they go.</p>
       <div class="gaps stagger">
-        <div class="gap card rv"><span class="gn">1</span><div><h3>The intent is often implicit</h3><p>“Help me finish this whenever I get stuck” names no trigger. The assistant has to decide from the video when help is needed and what kind.</p></div></div>
-        <div class="gap card rv"><span class="gn">2</span><div><h3>The task state keeps changing</h3><p>Earlier replies and user actions change what is still useful. Without tracking progress, assistants repeat advice, give outdated advice, or miss steps.</p></div></div>
-        <div class="gap card rv"><span class="gn">3</span><div><h3>Requests are revised mid-task</h3><p>Users add constraints, replace a request, or ask a side question. Assistants tend to keep following the first request.</p></div></div>
+        <div class="gap card rv"><span class="gn">1</span><div><h3>The intent is often implicit</h3><p>“Help me when I get stuck” names no trigger; the assistant must decide when to help.</p></div></div>
+        <div class="gap card rv"><span class="gn">2</span><div><h3>The task state keeps changing</h3><p>Without tracking progress, assistants repeat, give outdated advice, or miss steps.</p></div></div>
+        <div class="gap card rv"><span class="gn">3</span><div><h3>Requests are revised mid-task</h3><p>Users add, replace or interrupt requests; assistants keep following the first one.</p></div></div>
       </div>
     </div>
     <figure class="figure split-side rv">
       <div class="paper"><img src="static/img/teaser.webp" alt="Overview of StreamVibe"></div>
-      <figcaption><b>Figure 1.</b> (a) Proactive interaction under explicit, implicit and evolving intents. (b) Limitations of existing approaches and how StreamVibe addresses them. Click to enlarge.</figcaption>
+      <figcaption><b>Figure 1.</b> Overview of StreamVibe. Click to enlarge.</figcaption>
     </figure>
   </div>
 </section>
@@ -114,7 +114,7 @@
   <div class="sec-head">
     <div class="eyebrow rv"><span>02</span>Task</div>
     <h2 class="rv">Three levels of user intent</h2>
-    <p class="lead rv">StreamVibe-Bench grades proactive interaction by how explicit the intent is and whether it changes during the task.</p>
+    <p class="lead rv">Graded by how explicit the intent is and whether it changes mid-task.</p>
   </div>
   <div class="levels stagger">
     <div class="level card lv-ex rv">
@@ -144,7 +144,7 @@
     <div class="sec-head">
       <div class="eyebrow rv"><span>03</span>Examples</div>
       <h2 class="rv">StreamVibe on real streams</h2>
-      <p class="lead rv">Twenty clips from StreamVibe-Bench, ten physical and ten digital. Hover a card to preview it, click to play it below with StreamVibe-VL’s replies and the five baselines on the same clip.</p>
+      <p class="lead rv">Twenty benchmark clips. Hover to preview, click to play with StreamVibe-VL’s replies and five baselines.</p>
     </div>
   </div>
   <div class="marquees rv" id="marquees"></div>
@@ -177,8 +177,8 @@
     <div class="split-text">
       <div class="eyebrow rv"><span>04</span>StreamVibe-Bench</div>
       <h2 class="rv">Benchmark construction and evaluation</h2>
-      <p class="lead rv">Task videos come from physical settings (egocentric daily activities and task execution) and digital settings (navigation, content editing and tool use). Gemini-3.8-Flash proposes candidate help points with response windows and reference replies. Four reviewers check every sample independently, and a sample is kept only if all four approve it. Annotations are aligned to 1 FPS streams.</p>
-      <p class="lead2 rv">Explicit: 600 samples · Implicit: 2,000 · Dynamic: 1,500. Every model is scored on response timing (precision, recall, F1, false-positive rate) and response quality (answer score and content F1).</p>
+      <p class="lead rv">Physical and digital task videos. Gemini-3.8-Flash proposes help points with time windows and reference replies; a sample is kept only if four reviewers all approve it.</p>
+      <p class="lead2 rv">600 explicit · 2,000 implicit · 1,500 dynamic samples. Scored on timing (P / R / F1 / FPR) and quality (answer score, content F1).</p>
     </div>
     <div class="split-side rv">
       <div class="side-title">Comparison with existing proactive benchmarks</div>
@@ -203,17 +203,17 @@
       <p class="tnote">● full &nbsp; ◐ partial &nbsp; ○ no support. Dur.: average sample duration; Evid./Traj.: numbers of evidence points and evaluation trajectories.</p>
     </div>
   </div>
-  <div class="viewer card rv" data-viewer>
-    <div class="tab-bar">
-      <button class="on" data-i="0">Construction and statistics</button><button data-i="1">Task formulation</button><button data-i="2">Evaluation protocols</button>
-      <button class="replay" title="Replay the animation">↻ Replay</button>
-    </div>
-    <div class="pane on"><div class="paper"><img src="static/img/bench.webp" alt="Construction and statistics of StreamVibe-Bench" loading="lazy"></div>
-      <p class="pcap"><b>Figure 2.</b> (a) Data construction. (b) Samples per intent level and subtype. (c) Pointwise and trajectory evaluation. (d) Video duration and help points per sample.</p></div>
-    <div class="pane"><div class="paper"><img class="anim-svg" data-src="static/svg/formulation.svg" alt="Streaming task formulation"></div>
-      <p class="pcap">At each second the agent sees only the video so far, the requests so far and its own earlier replies, and chooses to stay silent or respond.</p></div>
-    <div class="pane"><div class="paper"><img class="anim-svg" data-src="static/svg/protocols.svg" alt="Pointwise and trajectory evaluation"></div>
-      <p class="pcap">Pointwise evaluation scores single decisions around help points. Trajectory evaluation runs the model over the whole video with its own reply history.</p></div>
+  <figure class="figure rv">
+    <div class="paper"><img src="static/img/bench.webp" alt="" loading="lazy"></div>
+    <figcaption><b>Figure 2.</b> Construction and statistics of StreamVibe-Bench.</figcaption>
+  </figure>
+  <div class="anim-card card rv">
+    <div class="anim-head"><span><b>Task.</b> Each second the agent sees only the past and chooses to stay silent or respond.</span><button class="replay">↻ Replay</button></div>
+    <div class="paper"><img class="anim-svg" data-src="static/svg/formulation.svg" alt=""></div>
+  </div>
+  <div class="anim-card card rv">
+    <div class="anim-head"><span><b>Evaluation.</b> Pointwise scores single decisions; trajectory runs the whole video with the model’s own history.</span><button class="replay">↻ Replay</button></div>
+    <div class="paper"><img class="anim-svg" data-src="static/svg/protocols.svg" alt=""></div>
   </div>
 </section>
 
@@ -222,36 +222,20 @@
   <div class="sec-head">
     <div class="eyebrow rv"><span>05</span>Method</div>
     <h2 class="rv">StreamVibe-VL and StreamVibe-Harness</h2>
-    <p class="lead rv">StreamVibe has two parts. StreamVibe-VL is a streaming video model that decides at every second whether to respond and what to say. StreamVibe-Harness runs around the model and keeps an explicit record of the active requests, the task progress and the replies already given, which it passes to the model as context.</p>
+    <p class="lead rv">A streaming model decides when and what to say; a harness keeps track of the requests.</p>
   </div>
-  <div class="viewer card rv" data-viewer>
-    <div class="tab-bar">
-      <button class="on" data-i="0">Method overview</button><button data-i="1">One second of inference</button>
-      <button class="replay" title="Replay the animation">↻ Replay</button>
-    </div>
-    <div class="pane on"><div class="paper"><img src="static/img/method.webp" alt="StreamVibe method overview" loading="lazy"></div>
-      <p class="pcap"><b>Figure 3.</b> (a) StreamVibe-Harness at inference time. (b) Stage 1, adaptive streaming SFT. (c) Stage 2, localized trajectory RL.</p></div>
-    <div class="pane"><div class="paper"><img class="anim-svg" data-src="static/svg/pipeline.svg" alt="One second inside StreamVibe"></div>
-      <p class="pcap">The Harness updates the interaction state every second; the model stays silent until a help point and then responds.</p></div>
+  <div class="anim-card card rv">
+    <div class="anim-head"><span><b>One second of inference.</b> The Harness updates the state; the model stays silent until a help point.</span><button class="replay">↻ Replay</button></div>
+    <div class="paper"><img class="anim-svg" data-src="static/svg/pipeline.svg" alt=""></div>
   </div>
+  <figure class="figure rv">
+    <div class="paper"><img src="static/img/method.webp" alt="" loading="lazy"></div>
+    <figcaption><b>Figure 3.</b> Harness at inference, adaptive SFT, localized trajectory RL.</figcaption>
+  </figure>
   <div class="mgrid stagger">
-    <div class="mcol card rv">
-      <h4><span class="st">H</span>StreamVibe-Harness</h4>
-      <p>The interaction state holds the active requests, the task progress and the replies already delivered. It changes only when the conversation or the video gives enough evidence.</p>
-      <p>Each request is tracked on its own. One-time requests close once they are satisfied; standing requests stay open. The Harness decides which requests are still valid, but not when to speak.</p>
-      <p>Recent history is kept in detail and older history is compressed. The parts relevant to the active requests are retrieved for each decision.</p>
-    </div>
-    <div class="mcol card rv">
-      <h4><span class="st">1</span>Adaptive streaming SFT</h4>
-      <p>Training sources differ a lot in how often the model should speak. The loss re-weights silence and response decisions to the current training mix and weights reply tokens separately, so the model does not drift toward always staying silent or always talking.</p>
-      <p class="mono-note">70K samples from StreamVibe-85K · 768K general streaming-video samples</p>
-    </div>
-    <div class="mcol card rv">
-      <h4><span class="st">2</span>Localized trajectory RL</h4>
-      <p>Rewarding whole trajectories mixes good and bad decisions. We instead roll out short causal segments around help points and optimize them with GRPO.</p>
-      <p>The reward is <span class="math">R = 0.7·R<sub>align</sub> + 0.3·R<sub>glob</sub></span>. R<sub>align</sub> scores each matched reply on timing and content; R<sub>glob</sub> scores the segment for coverage, order, consistency and redundancy.</p>
-      <p class="mono-note">15K RL tasks</p>
-    </div>
+    <div class="mcol card rv"><h4><span class="st">H</span>StreamVibe-Harness</h4><p>Tracks every request, task progress and past replies; retrieves the relevant history.</p></div>
+    <div class="mcol card rv"><h4><span class="st">1</span>Adaptive streaming SFT</h4><p>Balances silence and response so the model neither stays mute nor over-talks.</p><p class="mono-note">70K + 768K samples</p></div>
+    <div class="mcol card rv"><h4><span class="st">2</span>Localized trajectory RL</h4><p>GRPO on short rollouts around help points, rewarding timing, content and consistency.</p><p class="mono-note">15K tasks</p></div>
   </div>
 </section>
 
@@ -260,24 +244,24 @@
   <div class="sec-head">
     <div class="eyebrow rv"><span>06</span>Results</div>
     <h2 class="rv">Results</h2>
-    <p class="lead rv">Baselines are proprietary models (Gemini-3.1-Pro, Gemini-3.8-Flash, GPT-Realtime-2.1), open-source offline models (Qwen3-VL-8B, Qwen3.5-9B, JoyAI-VL-Interaction) and open-source streaming models (MMDuet2, Mage-VL, LiveStar, ViSpeak, VideoLLM-Online). StreamVibe-Bench numbers use trajectory evaluation with a ±2 s tolerance unless noted.</p>
+    <p class="lead rv">Against 11 proprietary, offline and streaming models.</p>
   </div>
 
   <div class="kgrid stagger">
     <div class="kcard card rv kc">
       <h4>Content F1 on StreamVibe-Bench</h4>
-      <p class="ksub">StreamVibe-VL (RL) vs. the strongest open-source baseline at each level.</p>
+      <p class="ksub">vs. the best open-source baseline</p>
       <div class="kchart" id="kBench"></div>
       <div class="klegend"><span><i class="d o"></i>StreamVibe-VL (RL)</span><span><i class="d b"></i>MMDuet2 (best baseline)</span></div>
     </div>
     <div class="kcard card rv kc">
       <h4>Other proactive benchmarks</h4>
-      <p class="ksub">Official protocols. EgoProactive macro score and IPIBench understanding score.</p>
+      <p class="ksub">EgoProactive and IPIBench</p>
       <div class="kchart" id="kTransfer"></div>
     </div>
     <div class="kcard card rv kc">
       <h4>General video understanding</h4>
-      <p class="ksub">Accuracy (%) of the base model and of StreamVibe-VL after proactive training.</p>
+      <p class="ksub">accuracy before → after training</p>
       <div class="kchart" id="kGeneral"></div>
       <div class="klegend"><span><i class="d o"></i>StreamVibe-VL (RL)</span><span><i class="d b"></i>Qwen3.5-9B (base)</span></div>
     </div>
@@ -285,7 +269,7 @@
 
   <div class="explorer card rv" id="explorer">
     <div class="ex-head">
-      <div><b>All models on StreamVibe-Bench</b><span class="muted"> · choose the setting and metric</span></div>
+      <div><b>All models</b></div>
       <div class="ex-ctrls">
         <div class="seg" id="exSet"><button data-k="traj" class="on">Trajectory</button><button data-k="point">Pointwise</button></div>
         <div class="seg" id="exMet"><button data-m="2">Timing F1</button><button data-m="3">FPR ↓</button><button data-m="4">Answer score</button><button data-m="5" class="on">Content F1</button></div>
@@ -296,33 +280,34 @@
     <div class="chart-tip" id="exTip"></div>
   </div>
 
-  <div class="split results-split">
-    <div class="split-text rv">
-  <div class="findings">
-    <h3 class="sub">Main observations</h3>
-    <ol>
-      <li><b>StreamVibe-VL is the strongest open-source model on StreamVibe-Bench.</b> It has the highest Content F1 at every intent level under trajectory evaluation. RL improves over SFT, most on dynamic intents. The gains carry over to EgoProactive and IPIBench, and accuracy on general video benchmarks goes up rather than down.</li>
-      <li><b>Implicit and dynamic intents remain hard for every model.</b> Models that respond more often reach higher recall but also trigger more false alarms, and timing F1 drops as interactions get longer.</li>
-      <li><b>Training and state tracking help in different ways.</b> SFT makes the model respond more readily; RL makes it more selective. Adding the Harness to a fixed model removes further unnecessary replies and improves content, with the largest effect on dynamic intents.</li>
-    </ol>
+  <div class="takeaways rv">
+    <div><span>01</span>Best open-source model at every intent level</div>
+    <div><span>02</span>Implicit and dynamic intents remain hard for all models</div>
+    <div><span>03</span>Training and the Harness add up</div>
   </div>
-
-    </div>
-    <div class="viewer card rv split-side" data-viewer>
-      <div class="tab-bar">
-        <button class="on" data-i="0">Generalization</button><button data-i="1">Diagnostics</button><button data-i="2">Training and Harness</button><button data-i="3">Case studies</button>
-      </div>
-      <div class="pane on"><div class="paper"><img src="static/img/transfer.webp" alt="" loading="lazy"></div><p class="pcap">(a) Macro score on EgoProactive; (b) submetric scores on IPIBench; (c) accuracy on MVBench, Video-MME and OVO-Bench.</p></div>
-      <div class="pane"><div class="paper"><img src="static/img/diagnostics.webp" alt="" loading="lazy"></div><p class="pcap">(a)–(b) Timing and Content F1 across categories and subtypes; (c) recall vs. near-miss FPR; (d) Content F1 drop under self-generated history; (e) pointwise vs. trajectory F1.</p></div>
-      <div class="pane"><div class="paper"><img src="static/img/ablation.webp" alt="" loading="lazy"></div><p class="pcap">(1) Timing F1 vs. video duration and early/late recall per dynamic subtype. (2) Changes of SFT over base and RL over SFT. (3) Gains from adding the Harness.</p></div>
-      <div class="pane"><div class="paper"><img src="static/img/cases.webp" alt="" loading="lazy"></div><p class="pcap">StreamVibe-VL aligns timing and content with the visual evidence; streaming baselines give premature, missing or inconsistent help.</p></div>
-    </div>
+  <div class="fig-grid">
+    <figure class="figure rv">
+    <div class="paper"><img src="static/img/transfer.webp" alt="" loading="lazy"></div>
+    <figcaption><b>Generalization</b></figcaption>
+    </figure>
+    <figure class="figure rv">
+    <div class="paper"><img src="static/img/diagnostics.webp" alt="" loading="lazy"></div>
+    <figcaption><b>Diagnostics</b></figcaption>
+    </figure>
+    <figure class="figure rv">
+    <div class="paper"><img src="static/img/ablation.webp" alt="" loading="lazy"></div>
+    <figcaption><b>Training and Harness</b></figcaption>
+    </figure>
+    <figure class="figure rv">
+    <div class="paper"><img src="static/img/cases.webp" alt="" loading="lazy"></div>
+    <figcaption><b>Case studies</b></figcaption>
+    </figure>
   </div>
 </section>
 
 <section class="wrap narrow sec" id="abstract">
   <div class="sec-head"><div class="eyebrow rv"><span>07</span>Abstract</div></div>
-  <p class="abstract rv">Vision-language models are shifting from offline passive understanding toward online proactive interaction. However, prevailing methods largely rely on explicit requests and miss the implicit user intent (<i>e.g.</i>, “where should I click next?” while a user navigates a website), and they fail to update their state as user requests evolve continuously. To address these challenges, we introduce <b>StreamVibe-Bench</b>, a benchmark serving as a testbed for user-intent interaction, with 4.1K evaluation samples and 85K training samples spanning explicit, implicit, and dynamic intents. Building on this benchmark, we develop <b>StreamVibe-VL</b>, a streaming proactive model that infers implicit user intents from continuous observations and dynamically tailors its interactions as these intents evolve. We further introduce <b>StreamVibe-Harness</b>, which maintains user intents as persistent states with flexible lifecycles and uses a hierarchical memory to track the latest user intent and environmental state. Our experiments reveal three key findings: <i>(i)</i> StreamVibe-VL preserves strong general video understanding while improving response timing and answer quality by 10.7% over other baselines; <i>(ii)</i> existing proactive models remain limited in understanding user intent and deciding when to respond, especially under implicit and dynamic intents; and <i>(iii)</i> StreamVibe-Harness further improves response consistency and adaptation over sustained interaction, resulting in a 12.3% gain in proactive interaction.</p>
+  <p class="abstract rv">Video assistants are moving from answering questions to helping proactively, but most still need an explicit trigger and do not keep up as requests change. We introduce <b>StreamVibe-Bench</b> (4.1K evaluation and 85K training samples across explicit, implicit and dynamic intents), <b>StreamVibe-VL</b>, a streaming model that infers when and how to help, and <b>StreamVibe-Harness</b>, which tracks requests and task state over time. StreamVibe-VL improves timing and answer quality by 10.7% over baselines while keeping general video understanding, and the Harness adds a further 12.3% in proactive interaction.</p>
 </section>
 
 <section class="wrap narrow sec" id="bibtex">
@@ -349,6 +334,6 @@
 
 <div class="lightbox" id="lightbox"><img alt=""></div>
 <script src="static/gallery.js?v=3c3ba81f"></script>
-<script src="static/main.js?v=ec9e8f5f"></script>
+<script src="static/main.js?v=5f0ce628"></script>
 </body>
 </html>

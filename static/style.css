@@ -460,3 +460,15 @@ footer { padding-top: 110px; }
   .split > *, .results-split > * { min-width: 0; }
   .motiv .figure { position: static; }
 }
+
+/* separate animation cards, capped width */
+.anim-card { max-width: 1240px; margin: 28px auto; }
+.anim-card .paper { box-shadow: 0 0 0 1px var(--line2); }
+/* results: one-line takeaways + 2x2 figure grid */
+.takeaways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0 24px; }
+.takeaways div { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 14px; background: rgba(14,18,29,.6); color: var(--ink); font-weight: 600; font-size: .95rem; line-height: 1.35; }
+.takeaways span { font: 600 .78rem var(--mono); color: #8fbaff; padding: 3px 7px; border-radius: 6px; border: 1px solid rgba(143,186,255,.35); background: rgba(57,135,229,.1); }
+.fig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.fig-grid .figure { margin: 0; }
+.fig-grid figcaption { text-align: center; }
+@media (max-width: 1000px) { .takeaways, .fig-grid { grid-template-columns: 1fr; } }

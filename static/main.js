@@ -46,7 +46,7 @@
     const el = e.target; el.classList.add('in'); io.unobserve(el);
     $$('.num[data-to]', el).forEach(countUp);
     if (el.matches('.num[data-to]')) countUp(el);
-    $$('.pane.on .anim-svg', el).forEach(playSvg);
+    $$('.anim-svg', el).forEach(playSvg);
     if (el.classList.contains('kc')) { $$('[data-w]', el).forEach(x => x.style.setProperty('--w', x.dataset.w)); $$('.db-dot.o', el).forEach(d => d.style.left = d.dataset.x + '%'); }
     if (el.classList.contains('level')) playChat(el);
   }), { threshold: 0.18 });
@@ -91,6 +91,8 @@
   $('#copyBib').onclick = () => navigator.clipboard.writeText($('#bibText').textContent).then(() => {
     $('#copyBib').textContent = 'Copied!'; setTimeout(() => $('#copyBib').textContent = 'Copy', 1500);
   });
+
+  $$('.anim-card .replay').forEach(b => b.onclick = () => playSvg($('.anim-svg', b.closest('.anim-card'))));
 
   // ---------- tabbed viewers (figures and animated diagrams); an animation restarts whenever its tab opens ----------
   $$('[data-viewer]').forEach(v => {
