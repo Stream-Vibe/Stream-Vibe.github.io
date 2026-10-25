@@ -72,9 +72,15 @@
   addEventListener('scroll', growPromo, { passive: true }); growPromo();
   $$('.replay').forEach(b => b.onclick = () => playSvg($('#' + b.dataset.for)));
 
+  // ---------- card spotlight follows the pointer ----------
+  document.addEventListener('mousemove', e => {
+    const c = e.target.closest && e.target.closest('.card'); if (!c) return;
+    const r = c.getBoundingClientRect(); c.style.setProperty('--mx', `${e.clientX - r.left}px`); c.style.setProperty('--my', `${e.clientY - r.top}px`);
+  }, { passive: true });
+
   // ---------- lightbox ----------
   const lb = $('#lightbox');
-  $$('.figure img').forEach(img => img.addEventListener('click', () => { $('img', lb).src = img.src; lb.classList.add('on'); }));
+  $$('.paper img:not(.anim-svg)').forEach(img => img.addEventListener('click', () => { $('img', lb).src = img.src; lb.classList.add('on'); }));
   lb.onclick = () => lb.classList.remove('on');
   addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
 
@@ -97,45 +103,29 @@
   // Demo theater + gallery
   // =====================================================================
   const G = window.GALLERY;
-  const ENVS = ['Physical', 'Digital'], LEVELS = ['All', 'Explicit', 'Implicit', 'Dynamic'];
-  let env = 'Physical', lvl = 'All', cur = null, shown = new Set(), tvVisible = false;
+  let cur = null, shown = new Set(), tvVisible = false;
   const tv = $('#tv'), chat = $('#tvChat'), lanes = $('#lanes');
   const fmt = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
 
-  ENVS.forEach(e => {
-    const b = document.createElement('button'); b.dataset.e = e;
-    b.innerHTML = `${e}<span class="ct">${G.filter(d => d.env === e).length}</span>`;
-    b.onclick = () => { env = e; lvl = 'All'; filter(); }; $('#envChips').appendChild(b);
-  });
-  LEVELS.forEach(l => {
-    const b = document.createElement('button'); b.dataset.l = l; b.textContent = l === 'All' ? 'All intents' : `${l} intent`;
-    b.onclick = () => { if (!b.disabled) { lvl = l; filter(); } }; $('#levelChips').appendChild(b);
-  });
-  G.forEach(d => {
-    const c = document.createElement('div'); c.className = 'card-d'; c.dataset.k = d.key;
+  // two endless rows (Physical drifts left, Digital drifts right); each row holds its cards twice so the loop is seamless
+  const card = d => {
     const others = Object.entries(d.counts).filter(([k]) => k !== 'StreamVibe').map(([, v]) => v);
-    c.innerHTML = `<div class="media"><img src="static/video/gallery/${d.key}.jpg" alt="" loading="lazy"><video muted loop playsinline preload="none" data-src="static/video/gallery/${d.key}.mp4"></video>
-      <span class="lvl ${d.level}">${d.level} · ${esc(d.sub)}</span><div class="play"><span>▶</span></div></div>
-      <div class="info"><div class="scn">${esc(d.env)}</div><div class="ttl">${esc(d.title)}</div>
-      <div class="cmp">replies in clip: <b>StreamVibe ${d.counts.StreamVibe}</b> · baselines ${Math.min(...others)}–${Math.max(...others)}</div></div>`;
-    const v = $('video', c);
+    return `<div class="mcard" data-k="${d.key}"><div class="media"><img src="static/video/gallery/${d.key}.jpg" alt="" loading="lazy">
+      <video muted loop playsinline preload="none" data-src="static/video/gallery/${d.key}.mp4"></video>
+      <span class="lvl ${d.level}">${d.level} · ${esc(d.sub)}</span><span class="ttl">${esc(d.title)}</span></div>
+      <div class="meta"><span>replies in clip</span><span><b>StreamVibe ${d.counts.StreamVibe}</b> · baselines ${Math.min(...others)}–${Math.max(...others)}</span></div></div>`;
+  };
+  $('#marquees').innerHTML = ['Physical', 'Digital'].map((env, i) => {
+    const L = G.filter(d => d.env === env), html = L.map(card).join('');
+    return `<div class="mrow${i ? ' rev' : ''}"><div class="mrow-head"><i></i>${env}<span>${L.length} clips · ${env === 'Physical' ? 'egocentric and everyday scenes' : 'desktop and web applications'}</span></div>
+      <div class="mview"><div class="track" style="--dur:${L.length * 9}s">${html}${html}</div></div></div>`;
+  }).join('');
+  $$('#marquees .mcard').forEach(c => {
+    const d = G.find(x => x.key === c.dataset.k), v = $('video', c);
     c.addEventListener('mouseenter', () => { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); });
     c.addEventListener('mouseleave', () => v.pause());
     c.onclick = () => { load(d, true); $('#theater').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
-    $('#grid').appendChild(c);
   });
-
-  function filter() {
-    $$('#envChips button').forEach(b => b.classList.toggle('on', b.dataset.e === env));
-    $$('#levelChips button').forEach(b => {
-      const n = G.filter(d => d.env === env && (b.dataset.l === 'All' || d.level === b.dataset.l)).length;
-      b.disabled = n === 0; b.classList.toggle('on', b.dataset.l === lvl);
-      b.innerHTML = `${b.dataset.l === 'All' ? 'All intents' : b.dataset.l + ' intent'}<span class="ct">${n}</span>`;
-    });
-    const vis = G.filter(d => d.env === env && (lvl === 'All' || d.level === lvl));
-    $$('#grid .card-d').forEach(c => c.classList.toggle('hide', !vis.some(d => d.key === c.dataset.k)));
-    if (vis.length && !vis.includes(cur)) load(vis[0]);
-  }
 
   function events(d) {
     // the first request always opens the clip; later turns only if they fall inside it
@@ -154,7 +144,7 @@
 
   function load(d, play) {
     cur = d; cur.ev = events(d);
-    $$('#grid .card-d').forEach(c => c.classList.toggle('on', c.dataset.k === d.key));
+    $$('#marquees .mcard').forEach(c => c.classList.toggle('on', c.dataset.k === d.key));
     tv.src = `static/video/gallery/${d.key}.mp4`; tv.poster = `static/video/gallery/${d.key}.jpg`;
     $('#tvBadge').innerHTML = `<i></i>LIVE · ${d.level} intent · ${esc(d.sub)} · ${esc(d.env)}`;
     $('#tvSpeed').textContent = d.speed > 1 ? `${d.speed}×` : '1×';
@@ -212,7 +202,7 @@
     tv.currentTime = (t - cur.start) / cur.speed; tv.play().catch(() => {});
   });
   new IntersectionObserver(([e]) => { tvVisible = e.isIntersecting; if (tvVisible) tv.play().catch(() => {}); else tv.pause(); }, { threshold: 0.3 }).observe($('#theater'));
-  filter();
+  load(G.find(d => d.env === 'Physical' && d.level === 'Implicit') || G[0]);
 
   // =====================================================================
   // Key result charts: dot-pair (dumbbell) rows and small horizontal bars, drawn as HTML so they animate with CSS
@@ -280,7 +270,7 @@
   // ranked horizontal bars per intent level; bars animate between metric/setting choices
   const MET = ['P', 'R', 'Timing F1', 'FPR', 'Answer score', 'Content F1'];
   let exK = 'traj', exM = 5;
-  const COLS = { Explicit: '#4f7fb8', Implicit: '#e0805e', Dynamic: '#8b6bb0' };
+  const COLS = { Explicit: '#3987e5', Implicit: '#e0704a', Dynamic: '#8a6ff0' };
   function drawExplorer() {
     const rows = R[exK].flatMap(([grp, rs]) => rs.map(([n, v]) => ({ n, v, grp })));
     const low = exM === 3, panels = $('#exPanels');
