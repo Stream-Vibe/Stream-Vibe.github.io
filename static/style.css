@@ -106,7 +106,7 @@ h3.sub { font: 600 1.3rem var(--sans); letter-spacing: -.02em; color: var(--ink)
 .authors sup, .affils sup { font-size: .66em; color: #8fbaff; }
 .affils { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; font-size: .84rem; color: var(--muted); margin: 0; opacity: 0; animation: fadeup 1s ease-out 1.45s forwards; }
 .affils span { display: inline-flex; align-items: center; gap: 5px; }
-.affils img { height: 15px; width: auto; background: #fff; border-radius: 4px; padding: 1px; }
+.affils img { height: 16px; width: auto; border-radius: 3px; }
 .scroll-cue { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); width: 24px; height: 38px; border: 1.5px solid rgba(255,255,255,.35); border-radius: 13px; }
 .scroll-cue span { position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: #fff; animation: cue 1.8s ease-in-out infinite; }
 @keyframes cue { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(12px); } }
