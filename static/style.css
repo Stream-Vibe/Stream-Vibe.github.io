@@ -503,3 +503,4 @@ footer { padding-top: 110px; }
 .btn-note::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #e6b85c; box-shadow: 0 0 0 3px rgba(230,184,92,.18); }
 .btn.soon { cursor: default; }
 .btn.soon:hover { transform: none; }
+.hero-inner { max-width: 1280px; }
