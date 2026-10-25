@@ -485,3 +485,12 @@ footer { padding-top: 110px; }
 @media (max-width: 760px) { .rotator { display: grid; justify-items: center; margin-top: 4px; } .rotator span { white-space: normal; text-align: center; } }
 .rotator span { justify-self: start; }
 @media (max-width: 760px) { .rotator span { justify-self: center; } }
+
+/* animations sit on dark panels that match the page */
+.paper.dark { background: #101624; box-shadow: 0 0 0 1px var(--line2), 0 20px 50px rgba(0,0,0,.4); }
+/* release status under the hero buttons */
+.btn.soon em { color: #e6b85c; border-color: rgba(230,184,92,.4); }
+.hf { font-size: 1rem; line-height: 1; }
+.release-note { display: inline-flex; align-items: center; gap: 10px; margin: -26px auto 36px; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(230,184,92,.3);
+  background: rgba(230,184,92,.08); color: #e9d3a3; font-size: .84rem; opacity: 0; animation: fadeup 1s ease-out 1.3s forwards; }
+.release-note .pill-dot { background: #e6b85c; box-shadow: 0 0 0 4px rgba(230,184,92,.18); }

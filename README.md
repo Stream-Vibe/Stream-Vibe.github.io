@@ -17,5 +17,5 @@ Regenerating assets (paths point at the cluster checkout; video work runs on a c
   `tools/finalize_windows.py` holds the hand-reviewed picks (English UI, no tutorials, no burned-in text) → `static/gallery.js` + `_work/encode.tsv`;
   `tools/encode_gallery.sh` encodes `static/video/gallery/`.
 - Promo video: `static/video/promo.mp4` is `code/talk/video/StreamVibe_promo_v3.mp4` (rebuild steps in the talk README).
-- Animated SVGs in `static/svg/` are the talk diagrams (`code/talk/svg`) with the name replaced.
+- Animated SVGs in `static/svg/` are the talk diagrams (`code/talk/svg`) recolored for the dark page by `tools/darken_svgs.py` (also swaps the old model name).
 - Results are charts only: key-result charts and the explorer read numbers hard-coded in `static/main.js` (StreamVibe-Bench main table + paper Fig. 4); keep them in sync with the paper.
