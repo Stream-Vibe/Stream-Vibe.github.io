@@ -19,6 +19,17 @@
   // ---------- title word stagger ----------
   $$('.title .w').forEach((w, i) => w.style.animationDelay = `${0.25 + i * 0.08}s`);
 
+  // ---------- hero tagline: rotate the phrase every 3.2 s ----------
+  const rot = $$('#rotator span');
+  if (rot.length && !reduce) {
+    let ri = 0;
+    setInterval(() => {
+      const prev = rot[ri]; prev.classList.remove('on'); prev.classList.add('out');
+      setTimeout(() => prev.classList.remove('out'), 650);
+      ri = (ri + 1) % rot.length; rot[ri].classList.add('on');
+    }, 3200);
+  }
+
   // ---------- hero: pointer parallax on the tilted video wall ----------
   const plane = $('.wall-plane'), hero = $('.hero');
   hero.addEventListener('mousemove', e => {

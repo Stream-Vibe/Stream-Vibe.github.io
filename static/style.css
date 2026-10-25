@@ -472,3 +472,16 @@ footer { padding-top: 110px; }
 .fig-grid .figure { margin: 0; }
 .fig-grid figcaption { text-align: center; }
 @media (max-width: 1000px) { .takeaways, .fig-grid { grid-template-columns: 1fr; } }
+
+/* hero tagline: fixed lead-in + rotating phrase (slides up with blur, gradient text, drawn underline) */
+.tagline { font-size: clamp(1.05rem, 1.7vw, 1.3rem); color: var(--ink); max-width: none; font-weight: 500; letter-spacing: -.01em; }
+.rotator { display: inline-grid; vertical-align: bottom; text-align: left; }
+.rotator span { grid-area: 1 / 1; white-space: nowrap; font-weight: 600; background: linear-gradient(90deg, #8fbaff, #c4a8ff, #ffb39a); -webkit-background-clip: text; background-clip: text; color: transparent;
+  opacity: 0; transform: translateY(70%); filter: blur(6px); transition: opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1), filter .6s ease-out; position: relative; padding-bottom: 3px; }
+.rotator span::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; border-radius: 2px; background: linear-gradient(90deg, #6aa8ff, #b18cff, #ff9a7a); transform: scaleX(0); transform-origin: left; transition: transform 2.4s cubic-bezier(.2,.7,.2,1) .2s; }
+.rotator span.on { opacity: 1; transform: none; filter: none; }
+.rotator span.on::after { transform: scaleX(1); }
+.rotator span.out { opacity: 0; transform: translateY(-70%); filter: blur(6px); }
+@media (max-width: 760px) { .rotator { display: grid; justify-items: center; margin-top: 4px; } .rotator span { white-space: normal; text-align: center; } }
+.rotator span { justify-self: start; }
+@media (max-width: 760px) { .rotator span { justify-self: center; } }
