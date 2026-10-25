@@ -494,3 +494,12 @@ footer { padding-top: 110px; }
 .release-note { display: inline-flex; align-items: center; gap: 10px; margin: -26px auto 36px; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(230,184,92,.3);
   background: rgba(230,184,92,.08); color: #e9d3a3; font-size: .84rem; opacity: 0; animation: fadeup 1s ease-out 1.3s forwards; }
 .release-note .pill-dot { background: #e6b85c; box-shadow: 0 0 0 4px rgba(230,184,92,.18); }
+
+/* pending releases: grouped buttons with a small note underneath (no separate banner) */
+.buttons { align-items: flex-start; }
+.btn-group { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.btn-note { font: .74rem var(--mono); color: #e6b85c; letter-spacing: .01em; display: inline-flex; align-items: center; gap: 7px; }
+.btn-note::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #e6b85c; box-shadow: 0 0 0 3px rgba(230,184,92,.18); }
+.btn.soon { cursor: default; }
+.btn.soon:hover { transform: none; }
