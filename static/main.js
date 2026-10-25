@@ -46,7 +46,7 @@
     const el = e.target; el.classList.add('in'); io.unobserve(el);
     $$('.num[data-to]', el).forEach(countUp);
     if (el.matches('.num[data-to]')) countUp(el);
-    $$('.anim-svg', el).forEach(playSvg);
+    $$('.pane.on .anim-svg', el).forEach(playSvg);
     if (el.classList.contains('kc')) { $$('[data-w]', el).forEach(x => x.style.setProperty('--w', x.dataset.w)); $$('.db-dot.o', el).forEach(d => d.style.left = d.dataset.x + '%'); }
     if (el.classList.contains('level')) playChat(el);
   }), { threshold: 0.18 });
@@ -70,7 +70,6 @@
   const pf = $('#promoFrame');
   const growPromo = () => { const r = pf.getBoundingClientRect(); const p = Math.max(0, Math.min(1, 1 - (r.top - innerHeight * 0.15) / (innerHeight * 0.7))); pf.style.setProperty('--s', (0.9 + 0.1 * p).toFixed(4)); };
   addEventListener('scroll', growPromo, { passive: true }); growPromo();
-  $$('.replay').forEach(b => b.onclick = () => playSvg($('#' + b.dataset.for)));
 
   // ---------- card spotlight follows the pointer ----------
   document.addEventListener('mousemove', e => {
@@ -93,10 +92,15 @@
     $('#copyBib').textContent = 'Copied!'; setTimeout(() => $('#copyBib').textContent = 'Copy', 1500);
   });
 
-  // ---------- figure tabs ----------
-  $$('#figTabs .tab-bar button').forEach(b => b.onclick = () => {
-    $$('#figTabs .tab-bar button').forEach(x => x.classList.toggle('on', x === b));
-    $$('#figTabs .tabfig').forEach((f, i) => f.classList.toggle('on', i === +b.dataset.i));
+  // ---------- tabbed viewers (figures and animated diagrams); an animation restarts whenever its tab opens ----------
+  $$('[data-viewer]').forEach(v => {
+    const btns = $$('.tab-bar button[data-i]', v), panes = $$('.pane', v), rep = $('.replay', v);
+    const show = i => {
+      btns.forEach((b, k) => b.classList.toggle('on', k === i)); panes.forEach((p, k) => p.classList.toggle('on', k === i));
+      const svg = $('.anim-svg', panes[i]); v.classList.toggle('has-anim', !!svg); if (svg && v.classList.contains('in')) playSvg(svg);
+    };
+    btns.forEach((b, i) => b.onclick = () => show(i));
+    if (rep) rep.onclick = () => { const s = $('.pane.on .anim-svg', v); if (s) playSvg(s); };
   });
 
   // =====================================================================
