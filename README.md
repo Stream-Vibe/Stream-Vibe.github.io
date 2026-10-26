@@ -16,6 +16,6 @@ Regenerating assets (paths point at the cluster checkout; video work runs on a c
   `tools/mine_gallery.py _work/windows_all.json _work/win_cands_all.json` keeps >=720p sources with nothing missed or stray, adds baselines;
   `tools/finalize_windows.py` holds the hand-reviewed picks (English UI, no tutorials, no burned-in text) → `static/gallery.js` + `_work/encode.tsv`;
   `tools/encode_gallery.sh` encodes `static/video/gallery/`.
-- Promo video: `static/video/promo.mp4` is `code/talk/video/StreamVibe_promo_v3.mp4` (rebuild steps in the talk README).
+- Promo video: `static/video/promo.mp4` is `code/talk/video/StreamVibe_promo_v9.mp4` (talk commit 3ae8ae5, voiceover + music) re-encoded at 2.6 Mbps + 128 kbps AAC; poster is its title frame at 6.2 s (rebuild steps in the talk README).
 - Animated SVGs in `static/svg/` are the talk diagrams (`code/talk/svg`) recolored for the dark page by `tools/darken_svgs.py` (also swaps the old model name).
 - Results are charts only: key-result charts and the explorer read numbers hard-coded in `static/main.js` (StreamVibe-Bench main table + paper Fig. 4); keep them in sync with the paper.
